@@ -18,6 +18,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".WatchlistActivity"
+            android:label="@string/title_activity_watchlist"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CalendarActivity"
+            android:label="@string/title_activity_calendar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FriendFeedActivity"
+            android:label="@string/title_activity_friend_feed"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MovieInfoActivity"
+            android:label="@string/title_activity_movie_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ShowInfoActivity"
+            android:label="@string/title_activity_show_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EpisodeInfoActivity"
+            android:label="@string/title_activity_episode_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RecommendationActivity"
+            android:label="@string/title_activity_recommendation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
