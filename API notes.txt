@@ -1,0 +1,190 @@
+All info can be found at
+    http://docs.trakt.apiary.io/#
+
+
+------------------------
+    AUTHENTICATION
+------------------------
+
+1.  Generate Code for user to enter
+        POST https://trakt.tv/oauth/device/code
+        
+        body:
+            {
+                "client_id": provided when registering an app
+            }
+
+        response:
+            {
+              "device_code": used in next step,
+              "user_code": 8 characters, display to the user,
+              "verification_url": "https://trakt.tv/activate", have the user visit this url
+              "expires_in": 600,
+              "interval": 5
+            }
+
+2.  Check to see if user has authorized
+        POST https://trakt.tv/oauth/device/token. 
+        
+        Poll this every "interval" seconds
+        
+        body:
+            {
+                "code": device code from previous call,
+                "client_id": ...,
+                "client_secret": ...
+            }
+
+        response:
+            {
+              "access_token": ...,
+              "token_type": "bearer",
+              "expires_in": 7776000, valid for 3 months
+              "refresh_token": ...,
+              "scope": "public"
+            }
+
+        Code    Description
+        200     Success - save the access_token
+        400     Pending - waiting for the user to authorize your app
+        404     Not Found - invalid device_code
+        409     Already Used - user already approved this code
+        410     Expired - the tokens have expired, restart the process
+        418     Denied - user explicitly denied this code
+        429     Slow Down - your app is polling too quickly
+
+------------------------
+    API INTERACTION
+------------------------
+
+1.  Add item to a collection
+
+        POST https://api-v2launch.trakt.tv/sync/collection
+
+        headers:
+            Content-Type:application/json
+            Authorization:Bearer [access_token]
+            trakt-api-version:2
+            trakt-api-key:[client_id]
+
+        body:
+            {
+              "movies": [
+                {
+                  "collected_at": "2014-09-01T09:10:11.000Z",
+                  "title": "Batman Begins",
+                  "year": 2005,
+                  "ids": {
+                    "trakt": 1,
+                    "slug": "batman-begins-2005",
+                    "imdb": "tt0372784",
+                    "tmdb": 272
+                  }
+                },
+                {
+                  "ids": {
+                    "imdb": "tt0000111"
+                  }
+                }
+              ],
+              "shows": [
+                {
+                  "title": "Breaking Bad",
+                  "year": 2008,
+                  "ids": {
+                    "trakt": 1,
+                    "slug": "breaking-bad",
+                    "tvdb": 81189,
+                    "imdb": "tt0903747",
+                    "tmdb": 1396,
+                    "tvrage": 18164
+                  }
+                },
+                {
+                  "title": "The Walking Dead",
+                  "year": 2010,
+                  "ids": {
+                    "trakt": 2,
+                    "slug": "the-walking-dead",
+                    "tvdb": 153021,
+                    "imdb": "tt1520211",
+                    "tmdb": 1402,
+                    "tvrage": 25056
+                  },
+                  "seasons": [
+                    {
+                      "number": 3
+                    }
+                  ]
+                },
+                {
+                  "title": "Mad Men",
+                  "year": 2007,
+                  "ids": {
+                    "trakt": 4,
+                    "slug": "mad-men",
+                    "tvdb": 80337,
+                    "imdb": "tt0804503",
+                    "tmdb": 1104,
+                    "tvrage": 16356
+                  },
+                  "seasons": [
+                    {
+                      "number": 1,
+                      "episodes": [
+                        {
+                          "number": 1
+                        },
+                        {
+                          "number": 2
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "episodes": [
+                {
+                  "ids": {
+                    "trakt": 1061,
+                    "tvdb": 1555111,
+                    "imdb": "tt007404",
+                    "tmdb": 422183,
+                    "tvrage": 12345
+                  }
+                }
+              ]
+            }
+
+        response:
+            {
+              "added": {
+                "movies": 1,
+                "episodes": 12
+              },
+              "updated": {
+                "movies": 0,
+                "episodes": 0
+              },
+              "existing": {
+                "movies": 0,
+                "episodes": 0
+              },
+              "not_found": {
+                "movies": [
+                  {
+                    "ids": {
+                      "imdb": "tt0000111"
+                    }
+                  }
+                ],
+                "shows": [],
+                "seasons": [],
+                "episodes": []
+              }
+            }
+
+2.  Remove item from collection
+       POST https://api-v2launch.trakt.tv/sync/collection/remove
+
+       Similar body and repsonse to 1. Add item to collection
