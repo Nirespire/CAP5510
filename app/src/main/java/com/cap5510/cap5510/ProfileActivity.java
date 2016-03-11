@@ -42,7 +42,9 @@ public class ProfileActivity extends AppCompatActivity {
 //            }
 //        });
 
-
+   /*
+      Here is where the code for the navigation drawer begins
+    */
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
 
         mRecyclerView.setHasFixedSize(true);                            // Letting the system know that the list objects are of fixed size
@@ -79,7 +81,11 @@ public class ProfileActivity extends AppCompatActivity {
         }; // Drawer Toggle Object Made
         Drawer.addDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
         mDrawerToggle.syncState();
+       /*
+         Here is where the code for the navigation drawer ends
+        */
 
+        //This commented code is for a button for the settings, you can copy it and put it anywhere.
 
 //        ((Button)findViewById(R.id.settings)).setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -90,7 +96,8 @@ public class ProfileActivity extends AppCompatActivity {
 //            }
 //
 //        });
-//
+
+         //This commented code is for a button to show the friend feed activity.
 //        ((Button)findViewById(R.id.feed)).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
