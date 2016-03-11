@@ -49,10 +49,24 @@
         <item>-1</item>
     </string-array>
 
-    <string name="pref_title_system_sync_settings">System sync settings</string>
+    <string-array name="list_array">
+        <item>watchlist</item>
+        <item>calendar</item>
 
+    </string-array>
+
+    <string-array name="list_values">
+        <item>1</item>
+        <item>2</item>
+
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+    <string name="logout">logout</string>
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_header_custom_settings">Custom Settings</string>
 
     <string name="pref_title_new_message_notifications">New message notifications</string>
 
@@ -68,4 +82,12 @@
     <string name="title_activity_show_info">ShowInfoActivity</string>
     <string name="title_activity_episode_info">EpisodeInfoActivity</string>
     <string name="title_activity_recommendation">RecommendationActivity</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <string name="settings_title">Set Start Page</string>
+
+    <string name="pref_user_profile">User Profile</string>
+    <string name="pref_user_settings">Update Settings</string>
 </resources>
