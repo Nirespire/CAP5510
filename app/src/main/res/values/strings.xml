@@ -91,7 +91,6 @@
     <string name="pref_user_profile">User Profile</string>
     <string name="pref_user_settings">Update Settings</string>
 
-<<<<<<< Updated upstream
     <string name="time6pm">6PM</string>
     <string name="time7pm">7PM</string>
     <string name="time8pm">8PM</string>
@@ -99,7 +98,7 @@
     <string name="time10pm">10PM</string>
     <string name="time11pm">11PM</string>
     <string name="time12am">12AM</string>
-=======
+
     <!-- watchlist strings -->
     <string name="watchlistText">On Deck to Watch</string>
     <string name="onDeckTV">TV episodes</string>
@@ -107,5 +106,4 @@
     <string name="harry_potter_and_the_deathly_hallows_part_one">Harry Potter and the Deathly Hallows Part one</string>
     <string name="starring">Starring</string>
 
->>>>>>> Stashed changes
 </resources>
