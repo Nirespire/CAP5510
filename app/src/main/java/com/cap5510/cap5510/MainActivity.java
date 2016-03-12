@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TabHost;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +18,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
 
+        tabHost.setup();
+
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec("tvEps");
+        tabSpec.setContent(R.id.tabEpisodes);
+        tabSpec.setIndicator("Episodes");
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("movies");
+        tabSpec.setContent(R.id.tabMovies);
+        tabSpec.setIndicator("movies");
+        tabHost.addTab(tabSpec);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
