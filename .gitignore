@@ -35,3 +35,6 @@ captures/
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
+
+#API stuff
+keys.xml
