@@ -9,6 +9,8 @@ import android.widget.TabHost;
 
 import com.cap5510.cap5510.api.GetTrendingMoviesTask;
 
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         tabSpec.setIndicator("movies");
         tabHost.addTab(tabSpec);
 
-        new GetTrendingMoviesTask().execute(this.getApplicationContext());
+        new GetTrendingMoviesTask().execute(this);
     }
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
