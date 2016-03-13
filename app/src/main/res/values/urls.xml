@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="url_get_device_code">https://trakt.tv/oauth/device/code</string>
+
+    <string name="json_device_code">device_code</string>
+    <string name="json_user_code">user_code</string>
+    <string name="json_verification_url">verification_url</string>
+    <string name="json_expires_in">expires_in</string>
+    <string name="json_interval">interval</string>
+
+    <string name="url_get_auth_token">POST https://trakt.tv/oauth/device/token</string>
+
     <string name="url_get_trending_movies">https://api-v2launch.trakt.tv/movies/trending?extended=images</string>
 
 </resources>
