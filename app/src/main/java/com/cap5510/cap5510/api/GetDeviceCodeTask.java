@@ -1,11 +1,14 @@
 package com.cap5510.cap5510.api;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,10 +34,12 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-    Activity a = null;
-    Context c = null;
-    SharedPreferences sharedPref;
-    TextView codeView;
+    private Activity a = null;
+    private Context c = null;
+    private SharedPreferences sharedPref;
+    private TextView codeView;
+    private Button genButton;
+    private Button openTraktButton;
 
     @Override
     protected Response doInBackground(Activity... params) {
@@ -44,7 +49,8 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
 
         sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
         codeView = (TextView) a.findViewById(R.id.code);
-        final Button genButton = (Button)a.findViewById(R.id.generate_code_button);
+        genButton = (Button)a.findViewById(R.id.generate_code_button);
+        openTraktButton = (Button) a.findViewById(R.id.open_trakt_button);
 
         if(sharedPref.getString(c.getString(R.string.json_access_token), null) != null){
             a.runOnUiThread(new Runnable(){
@@ -99,9 +105,6 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
             return;
         }
 
-        Toast toast = Toast.makeText(c, "Got Code", Toast.LENGTH_SHORT);
-        toast.show();
-
         try {
 
             String response = result.body().string();
@@ -116,6 +119,14 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
             int interval = Integer.parseInt(json.getString(c.getString(R.string.json_interval)));
 
             codeView.setText(userCode);
+            openTraktButton.setVisibility(View.VISIBLE);
+
+            ClipboardManager clipboard = (ClipboardManager) a.getSystemService(a.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("code", userCode);
+            clipboard.setPrimaryClip(clip);
+
+            Toast toast = Toast.makeText(c, "Code Copied to Clipboard", Toast.LENGTH_SHORT);
+            toast.show();
 
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString(c.getString(R.string.json_user_code), userCode);

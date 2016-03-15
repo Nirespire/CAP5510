@@ -9,10 +9,10 @@
     <string name="json_expires_in">expires_in</string>
     <string name="json_interval">interval</string>
     <string name="json_access_token">access_token</string>
-    <string name="json_refersh_token">refresh_token</string>
+    <string name="json_refresh_token">refresh_token</string>
 
     <string name="url_get_auth_token">https://trakt.tv/oauth/device/token</string>
-    <string name="url_poll_auth_token">https://trakt.tv/oauth/device/token</string>
+    <string name="url_enter_auth_code">https://trakt.tv/activate</string>
 
     <string name="url_get_trending_movies">https://api-v2launch.trakt.tv/movies/trending?extended=images</string>
 

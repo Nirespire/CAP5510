@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +38,7 @@ public class PollForAuth extends AsyncTask<Activity, Integer, Response> {
 
     @Override
     protected void onPreExecute() {
-        super.onPreExecute();
+        Log.e("sanjay", "PollForAuth preExecute");
         flag = true;
     }
 
@@ -51,6 +53,8 @@ public class PollForAuth extends AsyncTask<Activity, Integer, Response> {
 
         while(flag) {
 
+            Log.e("sanjay", "PollForAuth doInBackground");
+
             a = params[0];
             c = a.getApplicationContext();
             sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
@@ -61,7 +65,7 @@ public class PollForAuth extends AsyncTask<Activity, Integer, Response> {
 
             OkHttpClient client = new OkHttpClient();
 
-            String url = c.getString(R.string.url_poll_auth_token);
+            String url = c.getString(R.string.url_get_auth_token);
             JSONObject json = new JSONObject();
 
             try {
@@ -80,21 +84,30 @@ public class PollForAuth extends AsyncTask<Activity, Integer, Response> {
 
                 response = client.newCall(request).execute();
 
-                return response;
+                Log.e("sanjay", String.valueOf(response.code()));
+
+                if(response.code() == 200) {
+                    Log.e("sanjay", response.toString());
+                    return response;
+                }
 
             } catch (IOException e) {
-
+                Log.e("sanjay", "IO Exception");
+                Log.e("sanjay", e.getMessage());
             } catch (JSONException j) {
-
+                Log.e("sanjay", "JSON Exception");
+                Log.e("sanjay", j.getMessage());
             }
 
-            int interval = sharedPref.getInt(c.getString(R.string.json_interval), 5);
+            if(response.code() != 200) {
+                int interval = sharedPref.getInt(c.getString(R.string.json_interval), 5);
 
-            try {
-                Thread.sleep(interval * 1000);
-            }
-            catch(InterruptedException e){
-
+                try {
+                    Thread.sleep(interval * 1000);
+                } catch (InterruptedException e) {
+                    Log.e("sanjay", "Interrupted Exception");
+                    Log.e("sanjay", e.getMessage());
+                }
             }
         }
 
@@ -104,34 +117,40 @@ public class PollForAuth extends AsyncTask<Activity, Integer, Response> {
     @Override
     protected void onPostExecute(Response result) {
 
-        super.onPostExecute(result);
+        Log.e("sanjay", "PollForAuth postExecute");
 
         try {
 
-            if (result != null && result.code() == 200) {
-                flag = false;
+            flag = false;
 
-                String response = result.body().string();
+            String response = result.body().string();
 
-                Log.e("sanjay", response);
+            Log.e("sanjay", response);
 
-                JSONObject json = new JSONObject(response);
+            JSONObject json = new JSONObject(response);
 
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString(c.getString(R.string.json_access_token), json.getString("access_token"));
-                editor.putString(c.getString(R.string.json_refersh_token), json.getString("refresh_token"));
-                // TODO save expires_in field to know when to use refresh token
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(c.getString(R.string.json_access_token), json.getString("access_token"));
+            editor.putString(c.getString(R.string.json_refresh_token), json.getString("refresh_token"));
+            // TODO save expires_in field to know when to use refresh token
 
-                editor.commit();
+            editor.commit();
 
-                Toast toast = Toast.makeText(c, "Device Authorized!", Toast.LENGTH_SHORT);
-                toast.show();
+            Toast toast = Toast.makeText(c, "Device Authorized!", Toast.LENGTH_SHORT);
+            toast.show();
 
-                TextView codeView = (TextView) a.findViewById(R.id.code);
-                codeView.setText("You are Authorized!");
+            TextView codeView = (TextView) a.findViewById(R.id.code);
+            codeView.setText("You are Authorized!");
 
-                return;
-            }
+            Button genCodeBtn = (Button) a.findViewById(R.id.generate_code_button);
+            genCodeBtn.setEnabled(false);
+
+            Button openTraktButton = (Button) a.findViewById(R.id.open_trakt_button);
+            openTraktButton.setVisibility(View.GONE);
+
+
+            return;
+
 
         }
         catch(IOException e){

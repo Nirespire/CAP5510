@@ -55,6 +55,14 @@
                 android:text="Generate Code"
                 android:textStyle="bold" />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Open Tract to Enter Code"
+                android:id="@+id/open_trakt_button"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

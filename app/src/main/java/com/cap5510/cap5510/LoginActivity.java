@@ -3,6 +3,7 @@ package com.cap5510.cap5510;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -61,6 +62,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private TextView codeView;
+    private Button openTraktButton;
+    private Button genCodeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +81,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //            }
 //        });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.generate_code_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        genCodeButton = (Button) findViewById(R.id.generate_code_button);
+        genCodeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 generateCode();
+            }
+        });
+
+        openTraktButton = (Button) findViewById(R.id.open_trakt_button);
+        openTraktButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToTrakt();
             }
         });
 
@@ -94,12 +105,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         if(sharedPref.getString(getString(R.string.json_access_token), null) != null) {
             codeView.setText("You are Authorized!");
-            mEmailSignInButton.setEnabled(false);
+            genCodeButton.setEnabled(false);
+            openTraktButton.setVisibility(View.GONE);
         }
     }
 
     private void generateCode(){
         new GetDeviceCodeTask().execute(this);
+    }
+
+    public void goToTrakt () {
+        goToUrl (getString(R.string.url_enter_auth_code));
+    }
+
+    private void goToUrl (String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
     }
 
 //    private void populateAutoComplete() {
