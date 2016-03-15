@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,11 +33,28 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
 
     Activity a = null;
     Context c = null;
+    SharedPreferences sharedPref;
+    TextView codeView;
 
     @Override
     protected Response doInBackground(Activity... params) {
+
         a = params[0];
         c = a.getApplicationContext();
+
+        sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
+        codeView = (TextView) a.findViewById(R.id.code);
+        final Button genButton = (Button)a.findViewById(R.id.generate_code_button);
+
+        if(sharedPref.getString(c.getString(R.string.json_access_token), null) != null){
+            a.runOnUiThread(new Runnable(){
+                public void run() {
+                    codeView.setText("You are Authorized!");
+                    genButton.setEnabled(false);
+                }
+            });
+            return null;
+        }
 
         OkHttpClient client = new OkHttpClient();
         String url = c.getString(R.string.url_get_device_code);
@@ -77,10 +95,12 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
     @Override
     protected void onPostExecute(Response result) {
 
+        if(result == null){
+            return;
+        }
+
         Toast toast = Toast.makeText(c, "Got Code", Toast.LENGTH_SHORT);
         toast.show();
-
-        TextView codeView = (TextView) a.findViewById(R.id.code);
 
         try {
 
@@ -97,7 +117,6 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
 
             codeView.setText(userCode);
 
-            SharedPreferences sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString(c.getString(R.string.json_user_code), userCode);
             editor.putString(c.getString(R.string.json_device_code), deviceCode);
@@ -105,6 +124,9 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
             editor.putInt(c.getString(R.string.json_expires_in), expiresIn);
             editor.putInt(c.getString(R.string.json_interval), interval);
             editor.commit();
+
+            new PollForAuth().execute(a);
+
         }
         catch(IOException e){
             Log.e("sanjay", "IO Exception");
