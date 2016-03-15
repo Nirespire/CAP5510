@@ -18,13 +18,7 @@ import android.widget.Button;
 public class ProfileActivity extends AppCompatActivity {
    // private DrawerLayout mDrawerLayout;
    // private ActionBarDrawerToggle mDrawerToggle;
-   String TITLES[] = {"Home","Events","Mail","Shop","Travel"};
-    String NAME = "JPriya";
-    RecyclerView mRecyclerView;                           // Declaring RecyclerView
-    RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
-    RecyclerView.LayoutManager mLayoutManager;            // Declaring Layout Manager as a linear layout manager
-    DrawerLayout Drawer;                                  // Declaring DrawerLayout
-    ActionBarDrawerToggle mDrawerToggle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,45 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
 //            }
 //        });
 
-   /*
-      Here is where the code for the navigation drawer begins
-    */
-        mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
 
-        mRecyclerView.setHasFixedSize(true);                            // Letting the system know that the list objects are of fixed size
-
-        mAdapter = new NavAdapter(TITLES,NAME);       // Creating the Adapter of MyAdapter class(which we are going to see in a bit)
-        // And passing the titles,icons,header view name, header view email,
-        // and header view profile picture
-
-        mRecyclerView.setAdapter(mAdapter);                              // Setting the adapter to RecyclerView
-
-        mLayoutManager = new LinearLayoutManager(this);                 // Creating a layout Manager
-
-        mRecyclerView.setLayoutManager(mLayoutManager);                 // Setting the layout Manager
-
-
-        Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);        // Drawer object Assigned to the view
-        mDrawerToggle = new ActionBarDrawerToggle(this,Drawer,toolbar,R.string.drawer_open,R.string.drawer_close){
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
-                // open I am not going to put anything here)
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                // Code here will execute once drawer is closed
-            }
-
-
-
-        }; // Drawer Toggle Object Made
-        Drawer.addDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
-        mDrawerToggle.syncState();
        /*
          Here is where the code for the navigation drawer ends
         */

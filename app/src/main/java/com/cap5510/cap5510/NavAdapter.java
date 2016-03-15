@@ -1,11 +1,13 @@
 package com.cap5510.cap5510;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.TextView;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * Created by hayeesha on 3/10/16.
@@ -14,21 +16,26 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.ViewHolder> {
 
     private String NavTitles[];
     private String name;
+    private Context context;
+
     private static final int firstItem = 0;
     private static final int secondItem = 1;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         int Holderid;
 
         TextView textView;
         TextView Name;
+        Context contxt;
 
 
 
-        public ViewHolder(View itemView,int ViewType) {                 // Creating ViewHolder Constructor with View and viewType As a parameter
+        public ViewHolder(View itemView,int ViewType,Context c) {                 // Creating ViewHolder Constructor with View and viewType As a parameter
             super(itemView);
-
-
+            contxt = c;
+            itemView.setClickable(true);
+            itemView.setOnClickListener(this);
             // Here we set the appropriate view in accordance with the the view type as passed when the holder object is created
 
             if(ViewType == secondItem) {
@@ -43,12 +50,16 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.ViewHolder> {
             }
         }
 
-
+        @Override
+        public void onClick(View v){
+            Toast.makeText(contxt, "The Item Clicked is: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public NavAdapter(String[]titles,String mname) {
+    public NavAdapter(String[]titles,String mname,Context passedContext) {
         NavTitles = titles;
         name = mname;
+        this.context = passedContext;
 
     }
 
@@ -58,7 +69,9 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.ViewHolder> {
         if (viewType == secondItem) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item,parent,false); //Inflating the layout
 
-            ViewHolder vhItem = new ViewHolder(v,viewType); //Creating ViewHolder and passing the object of type view
+
+            ViewHolder vhItem = new ViewHolder(v,viewType,context); //Creating ViewHolder and passing the object of type view
+
 
             return vhItem; // Returning the created object
 
@@ -68,7 +81,7 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.ViewHolder> {
 
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_item,parent,false); //Inflating the layout
 
-            ViewHolder vhHeader = new ViewHolder(v,viewType); //Creating ViewHolder and passing the object of type view
+            ViewHolder vhHeader = new ViewHolder(v,viewType,context); //Creating ViewHolder and passing the object of type view
 
             return vhHeader; //returning the object created
 

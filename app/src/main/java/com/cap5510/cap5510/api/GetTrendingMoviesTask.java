@@ -30,7 +30,7 @@ public class GetTrendingMoviesTask extends AsyncTask<Activity, Integer, Response
         String apiKey = c.getString(R.string.api_key);
         Response response = null;
 
-        try {
+         try {
             Request request = new Request.Builder()
                     .addHeader("Content-Type", "application/json")
                     .addHeader("trakt-api-version", "2")
