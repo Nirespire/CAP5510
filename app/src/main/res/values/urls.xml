@@ -15,5 +15,6 @@
     <string name="url_enter_auth_code">https://trakt.tv/activate</string>
 
     <string name="url_get_trending_movies">https://api-v2launch.trakt.tv/movies/trending?extended=images</string>
+    <string name="url_get_watched_tv_shows">https://api-v2launch.trakt.tv/sync/history/shows</string>
 
 </resources>

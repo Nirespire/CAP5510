@@ -22,6 +22,7 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.cap5510.cap5510.api.GetTrendingMoviesTask;
+import com.cap5510.cap5510.api.GetWatchedTvShows;
 
 import okhttp3.Response;
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         tabSpec.setIndicator("movies");
         tabHost.addTab(tabSpec);
 
-        new GetTrendingMoviesTask().execute(this);
+        new GetWatchedTvShows().execute(this);
 
 
         /*
