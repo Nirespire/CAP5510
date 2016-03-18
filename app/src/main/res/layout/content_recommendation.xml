@@ -4,12 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.cap5510.cap5510.RecommendationActivity"
     tools:showIn="@layout/activity_recommendation">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp">
+
+        <!--image 600X900 -->
+        <TableRow>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="350dp"
+            android:src="@drawable/seinfeld"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seinfeld"
+                android:textSize="34sp"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center_horizontal"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp">
+            <TableLayout
+                android:layout_weight="1"
+                android:layout_width="0dp">
+                <TableRow android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/hide_small"
+                        android:background="#ffffff" />
+                </TableRow>
+                <TableRow android:gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hide"
+                        android:gravity="center_horizontal"
+                        android:textSize="24sp"/>
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_weight="1"
+                android:layout_width="0dp">
+                <TableRow android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/list_small"
+                        android:background="#ffffff"/>
+                </TableRow>
+                <TableRow android:gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+ Watchlist"
+                        android:gravity="center_horizontal"
+                        android:textSize="24sp"/>
+                </TableRow>
+            </TableLayout>
+
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>

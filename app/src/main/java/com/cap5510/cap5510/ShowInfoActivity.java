@@ -18,7 +18,7 @@ public class ShowInfoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
-        String[] items = new String[]{"Season One", "Season 2", "Season Three"};
+        String[] items = new String[]{"Season One", "Season Two", "Season Three"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
     }

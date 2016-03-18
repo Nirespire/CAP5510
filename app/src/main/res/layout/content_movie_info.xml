@@ -118,7 +118,8 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:paddingLeft="10dp">
                         <ImageView
                             android:id="@+id/danrad"
                             android:src="@drawable/daniel_radcliffe"
@@ -134,7 +135,8 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:paddingLeft="10dp">
                         <ImageView
                             android:id="@+id/danrad2"
                             android:src="@drawable/daniel_radcliffe"
@@ -149,7 +151,8 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:paddingLeft="10dp">
                         <ImageView
                             android:id="@+id/danrad3"
                             android:src="@drawable/daniel_radcliffe"
