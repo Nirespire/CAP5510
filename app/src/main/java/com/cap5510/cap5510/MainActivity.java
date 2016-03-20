@@ -2,8 +2,6 @@ package com.cap5510.cap5510;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,17 +15,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-import com.cap5510.cap5510.api.GetTrendingMoviesTask;
 import com.cap5510.cap5510.api.GetWatchedTvShows;
 
-import okhttp3.Response;
-
 public class MainActivity extends AppCompatActivity {
-    String TITLES[] = {"Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo"};
+    String TITLES[] = {"Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo", "APITest"};
     String NAME = "JPriya";
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
     RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
@@ -120,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case 8:
                             intent = new Intent(c,ShowInfoActivity.class);
+                            break;
+                        case 9:
+                            intent = new Intent(c, APITestActivity.class);
                             break;
                         default:
                             Toast.makeText(MainActivity.this, "The Item Clicked is: " + recyclerView.indexOfChild(child), Toast.LENGTH_SHORT).show();
