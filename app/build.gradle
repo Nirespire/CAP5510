@@ -30,5 +30,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile project(':libraries:SlidingMenu')
+    compile 'com.google.code.gson:gson:2.6.2'
 
 }
