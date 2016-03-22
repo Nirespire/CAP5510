@@ -1,6 +1,7 @@
 package com.cap5510.cap5510.api.objects;
 
 import com.cap5510.cap5510.api.Type;
+import java.util.ArrayList;
 
 /**
  * Created by Sanjay on 3/20/2016.
@@ -9,21 +10,35 @@ public class WatchlistItem {
 
     private Type type;
     private String title;
-    private String showTitle;
-    private int number;
+    private ArrayList<Integer> episodes;
     private int season;
     private int year;
     private int traktID;
     private String slug;
     private String imdbID;
 
-    public String getShowTitle() {
-        return showTitle;
+    public WatchlistItem(){
+        this.type = null;
+        this.title = "";
+        this.episodes = new ArrayList<Integer>();
+        this.season = -1;
+        this.year = -1;
+        this.traktID = -1;
+        this.slug = "";
+        this.imdbID = "";
     }
 
-    public void setShowTitle(String showTitle) {
-        this.showTitle = showTitle;
+    public WatchlistItem(Type type){
+        this.type = type;
+        this.title = "";
+        this.episodes = new ArrayList<Integer>();
+        this.season = -1;
+        this.year = -1;
+        this.traktID = -1;
+        this.slug = "";
+        this.imdbID = "";
     }
+
 
     public String getImdbID() {
         return imdbID;
@@ -51,12 +66,12 @@ public class WatchlistItem {
         this.title = title;
     }
 
-    public int getNumber() {
-        return number;
+    public ArrayList<Integer>  getEpisodes() {
+        return episodes;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setEpisodes(ArrayList<Integer>  number) {
+        this.episodes = number;
     }
 
     public int getSeason() {

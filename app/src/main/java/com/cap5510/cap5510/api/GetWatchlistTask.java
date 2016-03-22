@@ -1,18 +1,9 @@
 package com.cap5510.cap5510.api;
 
 import android.app.Activity;
-import android.app.Application;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cap5510.cap5510.R;
 import com.cap5510.cap5510.api.objects.WatchlistItem;
@@ -24,10 +15,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -103,8 +92,6 @@ public class GetWatchlistTask extends AsyncTask<Activity, Integer, Response> {
 
                             item.setTitle(movie.getString("title"));
                             item.setYear(movie.getInt("year"));
-                            item.setNumber(-1);
-                            item.setSeason(-1);
 
                             item.setTraktID(ids.getInt("trakt"));
                             item.setSlug(ids.getString("slug"));
@@ -122,10 +109,9 @@ public class GetWatchlistTask extends AsyncTask<Activity, Integer, Response> {
                             ids = show.getJSONObject("ids");
                             images = show.getJSONObject("images");
 
-                            item.setShowTitle(show.getString("title"));
+                            item.setTitle(show.getString("title"));
                             item.setYear(show.getInt("year"));
-                            item.setNumber(-1);
-                            item.setSeason(-1);
+
 
                             item.setTraktID(ids.getInt("trakt"));
                             item.setSlug(ids.getString("slug"));
@@ -142,14 +128,13 @@ public class GetWatchlistTask extends AsyncTask<Activity, Integer, Response> {
 
                             ids = season.getJSONObject("ids");
 
-                            item.setNumber(-1);
                             item.setSeason(season.getInt("number"));
 
                             item.setTraktID(ids.getInt("trakt"));
                             //item.setImdbID(ids.getString("imdb"));
 
                             show = currentItem.getJSONObject("show");
-                            item.setShowTitle(show.getString("title"));
+                            item.setTitle(show.getString("title"));
                             item.setYear(show.getInt("year"));
 
                             // This could be set to null
@@ -164,14 +149,16 @@ public class GetWatchlistTask extends AsyncTask<Activity, Integer, Response> {
                             ids = episode.getJSONObject("ids");
 
                             item.setTitle(episode.getString("title"));
-                            item.setNumber(episode.getInt("number"));
+                            ArrayList<Integer> episodes = new ArrayList<>();
+                            episodes.add(episode.getInt("number"));
+                            item.setEpisodes(episodes);
                             item.setSeason(episode.getInt("season"));
 
                             item.setTraktID(ids.getInt("trakt"));
                             item.setImdbID(ids.getString("imdb"));
 
                             show = currentItem.getJSONObject("show");
-                            item.setShowTitle(show.getString("title"));
+                            item.setTitle(show.getString("title"));
                             item.setYear(show.getInt("year"));
 
                             // This could be set to null

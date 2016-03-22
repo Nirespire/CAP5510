@@ -9,6 +9,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.cap5510.cap5510.api.AddToWatchlistTask;
+import com.cap5510.cap5510.api.Type;
+import com.cap5510.cap5510.api.objects.AsyncTaskInput;
+import com.cap5510.cap5510.api.objects.WatchlistItem;
+
+import java.util.ArrayList;
+
 public class WatchlistActivity extends AppCompatActivity {
 
     @Override
@@ -22,6 +29,7 @@ public class WatchlistActivity extends AppCompatActivity {
         String[] items = new String[]{"Watchlist", "Favorites", "DVDs I Own"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
+
     }
 
 }

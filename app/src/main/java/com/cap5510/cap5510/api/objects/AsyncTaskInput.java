@@ -7,6 +7,11 @@ public class AsyncTaskInput {
     private Activity activity;
     private Object payload;
 
+    public AsyncTaskInput(Activity a, Object p){
+        activity = a;
+        payload = p;
+    }
+
     public Object getPayload() {
         return payload;
     }

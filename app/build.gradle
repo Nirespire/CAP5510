@@ -32,4 +32,7 @@ dependencies {
     compile project(':libraries:SlidingMenu')
     compile 'com.google.code.gson:gson:2.6.2'
 
+    androidTestCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
+
 }
