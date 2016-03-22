@@ -105,6 +105,7 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
             return;
         }
 
+
         try {
 
             String response = result.body().string();

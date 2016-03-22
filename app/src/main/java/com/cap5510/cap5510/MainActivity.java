@@ -1,8 +1,10 @@
 package com.cap5510.cap5510;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -114,6 +116,9 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case 8:
                             intent = new Intent(c,ShowInfoActivity.class);
+//                            FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+//                            tx.replace(R.id., Fragment.instantiate(MainActivity.this, fragments[0]));
+//                            tx.commit();
                             break;
                         case 9:
                             intent = new Intent(c, APITestActivity.class);
