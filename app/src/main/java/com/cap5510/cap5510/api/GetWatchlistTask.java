@@ -2,8 +2,10 @@ package com.cap5510.cap5510.api;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.cap5510.cap5510.R;
 import com.cap5510.cap5510.api.objects.WatchlistItem;
@@ -26,6 +28,7 @@ public class GetWatchlistTask extends AsyncTask<Activity, Integer, Response> {
 
     private Activity a = null;
     private Context c = null;
+    SharedPreferences sharedPref = null;
 
     @Override
     protected Response doInBackground(Activity... params) {
@@ -37,11 +40,20 @@ public class GetWatchlistTask extends AsyncTask<Activity, Integer, Response> {
         String url = c.getString(R.string.url_get_watchlist);
         Response response = null;
 
+        sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
+        String accessToken = sharedPref.getString(c.getString(R.string.json_access_token), null);
+
+        if(accessToken == null){
+            Toast toast = Toast.makeText(c, "Please sign in to access this feature", Toast.LENGTH_SHORT);
+            toast.show();
+            return null;
+        }
+
         try{
 
             Request request = new Request.Builder()
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Bearer " + c.getString(R.string.access_token))
+                .addHeader("Authorization", "Bearer " + accessToken)
                 .addHeader("trakt-api-version", "2")
                 .addHeader("trakt-api-key", c.getString(R.string.api_key))
                 .url(url)
