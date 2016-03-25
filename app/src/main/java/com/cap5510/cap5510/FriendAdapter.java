@@ -2,6 +2,7 @@ package com.cap5510.cap5510;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class FriendAdapter extends ArrayAdapter<Friend> {
 
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+
             row = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new FriendHolder();
