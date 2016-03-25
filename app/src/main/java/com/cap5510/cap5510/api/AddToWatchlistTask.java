@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.cap5510.cap5510.R;
 import com.cap5510.cap5510.api.objects.AsyncTaskInput;
@@ -110,6 +111,13 @@ public class AddToWatchlistTask extends AsyncTask<AsyncTaskInput, Integer, Respo
             sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
 
             String accessToken = sharedPref.getString(c.getString(R.string.json_access_token), null);
+
+            if(accessToken == null){
+                Toast toast = Toast.makeText(c, "Please sign in to access this feature", Toast.LENGTH_SHORT);
+                toast.show();
+                return null;
+            }
+
             String apiKey = c.getString(R.string.api_key);
 
             Log.e("sanjay", accessToken);

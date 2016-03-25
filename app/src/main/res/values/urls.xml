@@ -22,5 +22,7 @@
 
     <string name="url_get_friends">https://api-v2launch.trakt.tv/users/me/friends?extended=images</string>
 
+    <string name="url_search">https://api-v2launch.trakt.tv/search?</string>
+
 
 </resources>

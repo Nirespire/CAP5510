@@ -27,4 +27,38 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchInput"
+        android:layout_below="@+id/button"
+        android:layout_marginTop="43dp"
+        android:layout_alignRight="@+id/button2"
+        android:layout_alignEnd="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="Query" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/searchBtn"
+        android:layout_below="@+id/searchInput"
+        android:layout_centerHorizontal="true"
+        android:onClick="testSearch" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/searchResults"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/searchBtn"
+        android:layout_alignRight="@+id/searchInput"
+        android:layout_alignEnd="@+id/searchInput"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

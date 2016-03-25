@@ -1,11 +1,15 @@
 package com.cap5510.cap5510;
 
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.cap5510.cap5510.api.AddToWatchlistTask;
 import com.cap5510.cap5510.api.GetWatchlistTask;
+import com.cap5510.cap5510.api.SearchTask;
 import com.cap5510.cap5510.api.Type;
 import com.cap5510.cap5510.api.objects.AsyncTaskInput;
 import com.cap5510.cap5510.api.objects.WatchlistItem;
@@ -38,7 +42,16 @@ public class APITestActivity extends AppCompatActivity {
         watchlistItems.add(movie);
 
         new AddToWatchlistTask().execute(new AsyncTaskInput(this, watchlistItems));
+    }
 
+    public void testSearch(View v){
 
+        EditText input = (EditText) findViewById(R.id.searchInput);
+
+        String query = "query=" + input.getText().toString();
+
+        AsyncTaskInput ati = new AsyncTaskInput(this, query);
+
+        new SearchTask().execute(ati);
     }
 }
