@@ -20,7 +20,7 @@ public class FriendFeedActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        generateCode();
+        //generateCode();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -31,9 +31,9 @@ public class FriendFeedActivity extends AppCompatActivity{
             }
         });*/
     }
-    private void generateCode(){
-        new FriendsTask().execute(this);
-    }
+   /*private void generateCode(){
+      new FriendsTask().execute(this);
+    }*/
 
 
 }

@@ -1,6 +1,6 @@
 package com.cap5510.cap5510;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,26 +24,36 @@ import android.widget.Toast;
 import com.cap5510.cap5510.api.GetWatchedTvShows;
 
 public class MainActivity extends AppCompatActivity {
-    String TITLES[] = {"Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo", "APITest"};
+    String TITLES[] = {"Home","Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo", "APITest"};
     String NAME = "JPriya";
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
     RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
     RecyclerView.LayoutManager mLayoutManager;            // Declaring Layout Manager as a linear layout manager
     DrawerLayout Drawer;                                  // Declaring DrawerLayout
     ActionBarDrawerToggle mDrawerToggle;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setTitle("Home");
+
         setupActionBar();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+        MainFragment mainFrag = new MainFragment();
+        MainActivity.this.setTitle("Home");
+        tx.add(R.id.frame_container, mainFrag, "MainFragment")
+                .addToBackStack(null)
+                .commit();
       //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 //        toolbar.setNavigationOnClickListener(this);
 
-
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        /*TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
 
@@ -54,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         tabSpec = tabHost.newTabSpec("movies");
         tabSpec.setContent(R.id.tabMovies);
         tabSpec.setIndicator("movies");
-        tabHost.addTab(tabSpec);
+        tabHost.addTab(tabSpec);*/
 
         new GetWatchedTvShows().execute(this);
 
@@ -87,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 View child = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
                 Context c = getApplicationContext();
                 Intent intent = null;
+                FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
 
                 if (child != null && mGestureDetector.onTouchEvent(motionEvent)) {
                     Drawer.closeDrawers();
@@ -94,33 +106,91 @@ public class MainActivity extends AppCompatActivity {
 
                     switch(recyclerView.indexOfChild(child)) {
                         case 1:
-                            intent = new Intent(c,CalendarActivity.class);
+                            //intent = new Intent(c,CalendarActivity.class);
+                            MainFragment mainFrag = new MainFragment();
+                            MainActivity.this.setTitle("Home");
+                            tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                                    .replace(R.id.frame_container, mainFrag, "MainFragment")
+                                    .addToBackStack(null)
+                                    .commit();
                             break;
                         case 2:
-                            intent = new Intent(c,ProfileActivity.class);
+                            //intent = new Intent(c,CalendarActivity.class);
+                            MainActivity.this.setTitle("Calendar");
+                            CalendarFragment calendarFrag = new CalendarFragment();
+                            tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                            .replace(R.id.frame_container, calendarFrag, "CalendarFragment")
+                                    .addToBackStack(null)
+                                    .commit();
                             break;
                         case 3:
-                            intent = new Intent(c,RecommendationActivity.class);
+                            //intent = new Intent(c,ProfileActivity.class);
+                            MainActivity.this.setTitle("Profile");
+                            ProfileFragment profileFrag = new ProfileFragment();
+                            tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                            .replace(R.id.frame_container, profileFrag, "ProfileFragment")
+                                    .addToBackStack(null)
+                                    .commit();
                             break;
                         case 4:
-                            intent = new Intent(c,WatchlistActivity.class);
+                            //intent = new Intent(c,RecommendationActivity.class);
+                            MainActivity.this.setTitle("Recommendation");
+                            RecommendationFragment recommendFrag = new RecommendationFragment();
+                            tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                                    .replace(R.id.frame_container, recommendFrag, "RecommendationFragment")
+                                    .addToBackStack(null)
+                                    .commit();
                             break;
                         case 5:
-                            intent = new Intent(c,EpisodeInfoActivity.class);
+                            //intent = new Intent(c,WatchlistActivity.class);
+                            MainActivity.this.setTitle("Watchlist");
+                            WatchlistFragment watchlistFrag = new WatchlistFragment();
+                            tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                                    .replace(R.id.frame_container, watchlistFrag, "WatchlistFragment")
+                                    .addToBackStack(null)
+                                    .commit();
                             break;
                         case 6:
-                            intent = new Intent(c,MovieInfoActivity.class);
+                            //intent = new Intent(c,EpisodeInfoActivity.class);
+                            MainActivity.this.setTitle("Episode Information");
+                            EpisodeInfoFragment episodeinfoFrag = new EpisodeInfoFragment();
+                            tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                                    .replace(R.id.frame_container, episodeinfoFrag, "EpisodeInfoFragment")
+                                    .addToBackStack(null)
+                                    .commit();
                             break;
                         case 7:
-                            intent = new Intent(c,FriendFeedActivity.class);
+                           // intent = new Intent(c,MovieInfoActivity.class);
+                            //startActivity(intent);
+                            MainActivity.this.setTitle("Movie Information");
+                            MovieInfoFragment movieinfoFrag = new MovieInfoFragment();
+                            tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                                    .replace(R.id.frame_container, movieinfoFrag, "MovieInfoFragment")
+                                    .addToBackStack(null)
+                                    .commit();
                             break;
                         case 8:
-                            intent = new Intent(c,ShowInfoActivity.class);
-//                            FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-//                            tx.replace(R.id., Fragment.instantiate(MainActivity.this, fragments[0]));
-//                            tx.commit();
+                            //intent = new Intent(c,FriendFeedActivity.class);
+                            MainActivity.this.setTitle("Friends");
+                            FriendFeedFragment friendfeedFrag = new FriendFeedFragment();
+
+                            //tx.replace(R.id.frame_container, Fragment.instantiate(MainActivity.this, "com.cap5510.cap5510.FriendFeedFragment"))
+                            tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                            .replace(R.id.frame_container, friendfeedFrag, "FriendFeedFragment")
+                            .addToBackStack(null)
+                            .commit();
                             break;
                         case 9:
+                            //intent = new Intent(c,ShowInfoActivity.class);
+                           // startActivity(intent);
+                            MainActivity.this.setTitle("Show Information");
+                            ShowInfoFragment showinfoFrag = new ShowInfoFragment();
+                            tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                                    .replace(R.id.frame_container, showinfoFrag, "ShowInfoFragment")
+                                    .addToBackStack(null)
+                                    .commit();
+                            break;
+                        case 10:
                             intent = new Intent(c, APITestActivity.class);
                             break;
                         default:
@@ -129,7 +199,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                     }
-                    startActivity(intent);
+
+                    //startActivity(intent);
+
                     return true;
 
                 }
@@ -189,6 +261,11 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

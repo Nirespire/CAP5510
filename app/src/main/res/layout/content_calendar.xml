@@ -4,11 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+    android:orientation="vertical"
+    tools:context="com.cap5510.cap5510.ProfileActivity"
+    android:scrollbars="vertical"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FRIDAY"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20sp"/>
+    </LinearLayout>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.cap5510.cap5510.CalendarActivity"
     android:orientation="vertical"
-    tools:showIn="@layout/activity_calendar">
+    >
+    &lt;!&ndash;&lt;!&ndash;android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_above="@id/frame_container"
+    android:layout_alignWithParentIfMissing="true"
+    android:layout_alignParentTop="true"&ndash;&gt;>&ndash;&gt;
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,15 +44,15 @@
         android:gravity="center"
         android:textSize="20sp"/>
 
-    <View
+     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray"/>-->
 
 
 
 
-    <ScrollView
+    <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="0dp">
@@ -38,7 +63,7 @@
 
 
 
-            <include layout="@layout/calendar_helper_layout" />
+            &lt;!&ndash;<include layout="@layout/calendar_helper_layout" />&ndash;&gt;
         <RelativeLayout
             android:id="@+id/HeaderRelativeLayout"
             android:layout_width="60dp"
@@ -190,5 +215,6 @@
 
 
 
-    </ScrollView>
-</LinearLayout>
+    </ScrollView>-->
+
+

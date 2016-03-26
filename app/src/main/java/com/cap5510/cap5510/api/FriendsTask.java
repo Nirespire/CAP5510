@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Button;
 
 import com.cap5510.cap5510.Friend;
 import com.cap5510.cap5510.FriendAdapter;
+import com.cap5510.cap5510.FriendFeedFragment;
 import com.cap5510.cap5510.R;
 
 import org.json.JSONArray;
@@ -29,6 +31,7 @@ import okhttp3.Response;
 public class FriendsTask extends AsyncTask<Activity, Integer, Response> {
 
     Activity a = null;
+    Fragment f=null;
     Context c = null;
     Friend friend_data[];
     ListView listview;
@@ -36,6 +39,7 @@ public class FriendsTask extends AsyncTask<Activity, Integer, Response> {
     @Override
     protected Response doInBackground(Activity... params) {
         a = params[0];
+        //a = f.getActivity();
         c = a.getApplicationContext();
 
         OkHttpClient client = new OkHttpClient();
@@ -90,11 +94,13 @@ public class FriendsTask extends AsyncTask<Activity, Integer, Response> {
 
             }
 
+
+
             FriendAdapter adapter = new FriendAdapter(a,R.layout.row_feed_item, friend_data);
 
-
-            listview = (ListView)a.findViewById(R.id.feedview);
-
+            //listview = (ListView)f.getView().findViewById(R.id.feedview);
+             listview = (ListView)a.findViewById(R.id.feedview);
+           // listview = (ListView)currentFragment.getView().findViewById(R.id.feedview);
             //View header = (View)getLayoutInflater().inflate(R.layout.listview_header_row, null);
             //listView1.addHeaderView(header);
 
