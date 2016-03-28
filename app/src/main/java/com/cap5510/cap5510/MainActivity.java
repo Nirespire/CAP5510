@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case 10:
                             intent = new Intent(c, APITestActivity.class);
+                            startActivity(intent);
                             break;
                         default:
                             Toast.makeText(MainActivity.this, "The Item Clicked is: " + recyclerView.indexOfChild(child), Toast.LENGTH_SHORT).show();

@@ -2,7 +2,6 @@ package com.cap5510.cap5510;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cap5510.cap5510.api.objects.DownloadImageTask;
+import com.cap5510.cap5510.api.DownloadImageTask;
 
 /**
  * Created by Vega on 3/22/2016.

@@ -1,4 +1,4 @@
-package com.cap5510.cap5510.api.objects;
+package com.cap5510.cap5510.api;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
