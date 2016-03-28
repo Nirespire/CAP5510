@@ -2,6 +2,7 @@ package com.cap5510.cap5510;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class FriendFeedFragment extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.content_friend_feed, null);
         mListView = (ListView)root.findViewById(R.id.feedview);
         generateCode();
+
         return root;
     }
 

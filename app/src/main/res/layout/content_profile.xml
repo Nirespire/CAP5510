@@ -11,10 +11,7 @@
     tools:context="com.cap5510.cap5510.ProfileActivity"
     android:scrollbars="vertical"
     tools:showIn="@layout/activity_profile">
-    <!--android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"-->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +29,6 @@
         android:id="@+id/profile_image"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/profileperson"
         app:civ_border_width="2dp"
         android:layout_gravity="center_horizontal"
         app:civ_border_color="#FF000000"/>
@@ -45,6 +41,7 @@
         android:textStyle="bold"
         android:layout_gravity="center"
         android:textColor="#000000"
+        android:id="@+id/profile_name"
         android:layout_marginTop="5dp"/>
 
        <!-- <Button
@@ -66,7 +63,13 @@
         android:textStyle="bold"
         android:paddingLeft="10dp"
         android:layout_marginTop="20dp"/>
-
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/horizontalScrollViewTV"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,31 +80,104 @@
         android:layout_marginRight="0dp"
         android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/supernaturalnew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingTop="0dp"
+            android:id="@+id/show1"
             />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:id="@+id/showtext1"/>
+        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingTop="0dp"
+            android:id="@+id/show2"/>
 
-
-            android:src="@drawable/limitless"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:id="@+id/showtext2"/>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/magicians"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-           android:paddingTop="0dp"/>
+           android:paddingTop="0dp"
+            android:id="@+id/show3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:id="@+id/showtext3"/>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="0dp"
+            android:id="@+id/show4"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:id="@+id/showtext4"/>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="0dp"
+            android:id="@+id/show5"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/showtext5"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
 
 
     </LinearLayout>
+        </HorizontalScrollView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,85 +186,123 @@
         android:textStyle="bold"
         android:paddingLeft="10dp"
        />
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/horizontalScrollViewMovie"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
         android:paddingLeft="10dp"
         android:paddingRight="5dp"
-
         android:layout_marginRight="0dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/pirates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingTop="0dp"
+            android:id="@+id/movie1"
             />
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingTop="0dp"
-
-
-            android:src="@drawable/concussion"/>
+            android:id="@+id/movie2"/>
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/bighero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie3"
+            android:paddingLeft="10dp"
+            android:paddingTop="0dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie4"
+            android:paddingLeft="10dp"
+            android:paddingTop="0dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie5"
             android:paddingLeft="10dp"
             android:paddingTop="0dp"/>
 
 
     </LinearLayout>
+        </HorizontalScrollView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
         android:text="Watchlist"
         android:paddingLeft="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
        />
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/horizontalScrollViewWatchlist"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
         android:paddingLeft="10dp"
         android:paddingRight="5dp"
+        android:paddingBottom="5dp"
 
         android:layout_marginRight="0dp"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/shadowhunters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingTop="0dp"
+            android:id="@+id/watchlist1"
             />
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingTop="0dp"
-
-
-            android:src="@drawable/breakingbad"/>
+            android:id="@+id/watchlist2"
+           />
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/elementary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/watchlist3"
+            android:paddingLeft="10dp"
+            android:paddingTop="0dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:id="@+id/watchlist4"
+            android:paddingTop="0dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/watchlist5"
             android:paddingLeft="10dp"
             android:paddingTop="0dp"/>
 
 
+
+
     </LinearLayout>
+        </HorizontalScrollView>
     </LinearLayout>
     </ScrollView>
 </LinearLayout>

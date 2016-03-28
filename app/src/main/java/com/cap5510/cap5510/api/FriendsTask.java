@@ -2,14 +2,20 @@ package com.cap5510.cap5510.api;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import com.cap5510.cap5510.Friend;
 import com.cap5510.cap5510.FriendAdapter;
+import com.cap5510.cap5510.FriendFeedActivity;
 import com.cap5510.cap5510.FriendFeedFragment;
 import com.cap5510.cap5510.R;
 
@@ -17,8 +23,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.SharedPreferences;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
@@ -81,6 +92,7 @@ public class FriendsTask extends AsyncTask<Activity, Integer, Response> {
 
          JSONArray json = new JSONArray(response);
             friend_data = new Friend[json.length()];
+            final String[]friendspix = new String[json.length()];
             for(int i=0;i<json.length();i++){
                 JSONObject currentItem = json.getJSONObject(i);
                 JSONObject user = currentItem.getJSONObject("user");
@@ -89,6 +101,7 @@ public class FriendsTask extends AsyncTask<Activity, Integer, Response> {
                 String username = user.getString("username");
 
                 friend_data[i] = new Friend(icon,username);
+                friendspix[i] = icon;
 
                 //Log.e("aishaty", icon);
 
@@ -105,6 +118,38 @@ public class FriendsTask extends AsyncTask<Activity, Integer, Response> {
             //listView1.addHeaderView(header);
 
             listview.setAdapter(adapter);
+
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    TextView name = (TextView)view.findViewById(R.id.friendname);
+                    ImageView pic = (ImageView)view.findViewById(R.id.friendpic);
+
+//                    Bitmap bitmap = pic.getDrawingCache();
+//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+//                    byte[] b = baos.toByteArray();
+
+                    Intent intent = new Intent(c,FriendFeedActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    Bundle extras = new Bundle();
+                    extras.putString("username", name.getText().toString());
+                   // extras.putParcelable("picture", pic.getDrawingCache());
+                    //extras.putByteArray("picture", b);
+                    extras.putString("picture",friendspix[position]);
+
+                    intent.putExtras(extras);
+                    c.startActivity(intent);
+
+
+                   // Toast.makeText(a, pic.getDrawingCache().toString(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            });
+
+
 
 
 
