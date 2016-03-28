@@ -13,4 +13,8 @@
         android:title="@string/action_sign_in_short"
         android:onClick="goToSignInPage"
         app:showAsAction="never" />
+    <item android:id="@+id/menu_search"
+        android:title="@string/search_hint"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
 </menu>
