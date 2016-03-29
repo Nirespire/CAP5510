@@ -46,12 +46,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-        MainFragment mainFrag = new MainFragment();
-        MainActivity.this.setTitle("Home");
-        tx.add(R.id.frame_container, mainFrag, "MainFragment")
-                .addToBackStack(null)
-                .commit();
+       // if (getSupportFragmentManager().findFragmentById(R.id.frame_container) == null) {
+            FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+            MainFragment mainFrag = new MainFragment();
+            MainActivity.this.setTitle("Home");
+            tx.add(R.id.frame_container, mainFrag, "MainFragment")
+                    .addToBackStack(null)
+                    .commit();
+       // }
       //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 //        toolbar.setNavigationOnClickListener(this);
@@ -279,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
 
