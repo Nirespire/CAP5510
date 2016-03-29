@@ -3,11 +3,14 @@ package com.cap5510.cap5510.api;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.widget.ImageView;
@@ -17,6 +20,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.cap5510.cap5510.APITestActivity;
+import com.cap5510.cap5510.MainActivity;
+import com.cap5510.cap5510.MovieInfoActivity;
+import com.cap5510.cap5510.MovieInfoFragment;
 import com.cap5510.cap5510.R;
 import com.cap5510.cap5510.SearchActivity;
 import com.cap5510.cap5510.api.objects.AsyncTaskInput;
@@ -133,8 +139,9 @@ public class SearchTask extends AsyncTask<AsyncTaskInput, Integer, Response> {
 
                     switch(type){
                         case "movie":
-                        case "show":
                             createSearchResultMovieItem(subItem, resultsTable);
+                            break;
+                        case "show":
                             break;
                         case "episode":
                             break;
@@ -165,13 +172,21 @@ public class SearchTask extends AsyncTask<AsyncTaskInput, Integer, Response> {
     private void createSearchResultMovieItem(JSONObject item, TableLayout resultsTable){
         ImageView iv = new ImageView(a);
 
-
         String imageURL = "https://placeholdit.imgix.net/~text?txtsize=33&txt=poster&w=300&h=450";
         try {
             imageURL = item.getJSONObject("images").getJSONObject("poster").getString("thumb");
         }
         catch(JSONException e){
             Log.e("sanjay", "failed to get poster");
+            Log.e("sanjay", e.getMessage());
+        }
+
+        int traktID = -1;
+        try {
+            traktID = item.getJSONObject("ids").getInt("trakt");
+        }
+        catch(JSONException e){
+            Log.e("sanjay", "failed to get trakt ID");
             Log.e("sanjay", e.getMessage());
         }
 
@@ -256,8 +271,35 @@ public class SearchTask extends AsyncTask<AsyncTaskInput, Integer, Response> {
 
         row.addView(iv);
         row.addView(ll);
+        row.setClickable(true);
+
+        row.setOnClickListener(new searchResultOnClickListener(a, MainActivity.class, traktID));
 
         resultsTable.addView(row);
+    }
+
+
+    private class searchResultOnClickListener implements View.OnClickListener{
+
+        Activity a;
+        Class<MainActivity> n;
+        int id;
+
+        public searchResultOnClickListener(Activity a, Class<MainActivity> nextActivity, int id){
+            this.a = a;
+            this.n = nextActivity;
+            this.id = id;
+        }
+
+        @Override
+        public void onClick(View v){
+            Intent intent = new Intent();
+            intent.putExtra("traktID", id);
+
+            a.setResult(a.RESULT_OK, intent);
+
+            a.finish();
+        }
     }
 
 

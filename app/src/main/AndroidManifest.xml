@@ -21,14 +21,22 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
 
             <!-- enable the search dialog to send searches to SearchableActivity -->
+            <!--<meta-data android:name="android.app.searchable"-->
+                <!--android:value="com.cap5510.cap5510.SearchActivity"/>-->
+
+            <meta-data android:name="android.app.default_searchable"
+                android:value=".MainActivity" />
+
             <meta-data android:name="android.app.searchable"
-                android:value="com.cap5510.cap5510.SearchActivity"/>
+                android:resource="@xml/searchable"/>
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.SEARCH" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

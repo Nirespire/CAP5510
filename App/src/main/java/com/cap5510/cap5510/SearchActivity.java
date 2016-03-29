@@ -21,6 +21,7 @@ public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
+        setIntent(intent);
         handleIntent(intent);
     }
 
@@ -34,14 +35,11 @@ public class SearchActivity extends AppCompatActivity {
 
     // Get the intent, verify the action and get the query
     private void handleIntent(Intent intent) {
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
+        String query = intent.getStringExtra(SearchManager.QUERY);
 
-            Log.e("sanjay", query);
+        Log.e("sanjay", query);
 
-            new SearchTask().execute(new AsyncTaskInput(this, "query=" + query + "&type=show,movie&limit=100"));
-        }
+        new SearchTask().execute(new AsyncTaskInput(this, "query=" + query + "&type=show,movie&limit=100"));
+
     }
-
-
 }
