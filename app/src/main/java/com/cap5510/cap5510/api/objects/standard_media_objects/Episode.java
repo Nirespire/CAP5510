@@ -1,5 +1,7 @@
 package com.cap5510.cap5510.api.objects.standard_media_objects;
 
+import com.cap5510.cap5510.api.objects.WatchlistItem;
+
 /**
  * http://docs.trakt.apiary.io/#introduction/standard-media-objects
  */
@@ -8,6 +10,9 @@ public class Episode extends StandardMediaObject {
     private int number;
     private String title;
     private EpisodeIDs ids;
+    private int id;
+
+    private String posterURL;
 
     public int getSeason() {
         return season;
@@ -40,4 +45,18 @@ public class Episode extends StandardMediaObject {
     public void setIds(EpisodeIDs ids) {
         this.ids = ids;
     }
+
+    public int getID(){
+        return id;
+    }
+
+    public String getPosterURL(){
+        return posterURL;
+    }
+    public Episode (int id, String url) {
+        this.id = id;
+        this.posterURL = url;
+    }
+
+
 }

@@ -4,11 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Button;
 
 import com.cap5510.cap5510.R;
+import com.cap5510.cap5510.api.objects.AsyncTaskInput;
+import com.cap5510.cap5510.api.objects.WatchlistItem;
+import com.cap5510.cap5510.api.objects.standard_media_objects.Episode;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,29 +34,106 @@ public class GetWatchedTvShows extends AsyncTask<Activity, Integer, Response> {
         OkHttpClient client = new OkHttpClient();
         String url = c.getString(R.string.url_get_watched_tv_shows);
         String apiKey = c.getString(R.string.api_key);
+        String accessToken = c.getString(R.string.access_token);
         Response response = null;
 
-         try {
+        try {
             Request request = new Request.Builder()
                     .addHeader("Content-Type", "application/json")
+                    .addHeader("Authorization", "Bearer " + accessToken)
                     .addHeader("trakt-api-version", "2")
                     .addHeader("trakt-api-key", apiKey)
                     .url(url)
                     .build();
 
             response = client.newCall(request).execute();
-            Log.e("Response", response.body().string());
-        } catch (IOException e) {
-             Log.e("no response", e.toString());
+        } catch (Exception e) {
         }
-
         return response;
     }
 
     @Override
     protected void onPostExecute(Response result) {
-        Log.d("FinishedTV", "Find watched tv shows has completed");
+        //Log.d("FinishedTV", "Find watched tv shows has completed");
+
+        if(result == null){
+            Log.e("result", "is null");
+        }
+
+        try {
+
+
+            String response = result.body().string();
+
+            JSONArray json = new JSONArray(response);
+
+            ArrayList<WatchlistItem> items = new ArrayList<WatchlistItem>();
+            ArrayList<String> showNames = new ArrayList<String>();
+
+            String showPosterImage;
+
+            if(json.length() > 0){
+
+                for(int i = 0; i < json.length(); i++){
+
+                    WatchlistItem item = new WatchlistItem();
+
+                    JSONObject currentItem = json.getJSONObject(i);
+
+                    item.setType(Type.Episode);
+
+                    JSONObject episode = currentItem.getJSONObject("episode");
+
+                    JSONObject ids = episode.getJSONObject("ids");
+
+
+                    item.setSeason(episode.getInt("season"));
+
+
+                    item.setImdbID(ids.getString("imdb"));
+
+                    JSONObject show = currentItem.getJSONObject("show");
+
+                    item.setTitle(show.getString("title"));
+
+                    item.setTraktID(show.getJSONObject("ids").getInt("trakt"));
+                    item.setYear(show.getInt("year"));
+
+                    item.setPosterURL(show.getJSONObject("images").getJSONObject("poster").getString("full"));
+
+
+                    // This could be set to null
+                    //item.setPosterURL(show.getJSONObject("images").getJSONObject("poster").getString("full"));
+
+                    if(!showNames.contains(item.getTitle())) {
+                        //Log.d("show name", item.getTitle());
+                        showNames.add(item.getTitle());
+                        items.add(item);
+                    }
+                }
+            }
+
+            //Log.e("stevie", items.toString());
+            AsyncTaskInput temp;
+            Episode ep;
+            for (WatchlistItem it : items) {
+                ep = new Episode(it.getTraktID(), it.getPosterURL());
+                temp = new AsyncTaskInput(a, ep);
+                new GetTvProgress().execute(temp);
+            }
+
+        }catch(Exception e){
+            Log.e("error", e.toString());
+        }
+//        catch(IOException e){
+//            Log.e("stevie", "IO Exception");
+//            Log.e("stevie", e.getMessage());
+//        }
+//        catch(JSONException j){
+//            Log.e("stevie", "JSON Exception");
+//            Log.e("stevie", j.getMessage());
+//        }
+
     }
 }
-
 
