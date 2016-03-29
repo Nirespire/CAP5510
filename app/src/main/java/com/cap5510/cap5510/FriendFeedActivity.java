@@ -1,21 +1,13 @@
 package com.cap5510.cap5510;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cap5510.cap5510.api.FriendProfileTask;
-import com.cap5510.cap5510.api.GetDeviceCodeTask;
-import com.cap5510.cap5510.api.FriendsTask;
 import com.cap5510.cap5510.api.GetFriendWatchedHistoryTask;
-import com.cap5510.cap5510.api.objects.DownloadImageTask;
+import com.cap5510.cap5510.api.DownloadImageTask;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

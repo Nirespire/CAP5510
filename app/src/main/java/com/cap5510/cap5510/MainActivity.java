@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout Drawer;                                  // Declaring DrawerLayout
     ActionBarDrawerToggle mDrawerToggle;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
         new GetWatchedTvShows().execute(this);
 
 
-        /*
-      Here is where the code for the navigation drawer begins
-    */
+        //Here is where the code for the navigation drawer begins
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
 
         mRecyclerView.setHasFixedSize(true);                            // Letting the system know that the list objects are of fixed size
@@ -197,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case 10:
                             intent = new Intent(c, APITestActivity.class);
+                            startActivity(intent);
                             break;
                         default:
                             Toast.makeText(MainActivity.this, "The Item Clicked is: " + recyclerView.indexOfChild(child), Toast.LENGTH_SHORT).show();
@@ -320,6 +318,51 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onNewIntent(Intent intent){
+        handleIntent(intent);
+    }
+
+    /*
+        Search bar sends the query to the main activity, which then passes it to the SearchActivity
+        and waits for a result to come back
+     */
+    private void handleIntent(Intent intent) {
+        // Get the intent, verify the action and get the query
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            Log.e("sanjay", "search intent!");
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            // manually launch the real search activity
+            final Intent searchIntent = new Intent(getApplicationContext(), SearchActivity.class);
+            // add query to the Intent Extras
+            searchIntent.putExtra(SearchManager.QUERY, query);
+            startActivityForResult(searchIntent, 1);
+        }
+    }
+
+    /*
+        Handle result when item is clicked in search results and it is closed
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+
+        // Check which request we're responding to
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                int traktID = data.getIntExtra("traktID", -1);
+                Log.e("sanjay", String.valueOf(traktID));
+
+                MainActivity.this.setTitle("Movie Information");
+                MovieInfoFragment movieInfoFrag = new MovieInfoFragment();
+                tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                    .replace(R.id.frame_container, movieInfoFrag, "MovieInfoFragment")
+                    .addToBackStack(null)
+                    .commitAllowingStateLoss();
+            }
+        }
+    }
 
 
 }

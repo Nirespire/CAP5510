@@ -1,7 +1,6 @@
 package com.cap5510.cap5510.api;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 
 import com.cap5510.cap5510.Friend;
 import com.cap5510.cap5510.R;
-import com.cap5510.cap5510.api.objects.DownloadImageTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;

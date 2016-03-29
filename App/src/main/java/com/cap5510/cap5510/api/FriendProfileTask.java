@@ -1,26 +1,16 @@
 package com.cap5510.cap5510.api;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.cap5510.cap5510.Friend;
-import com.cap5510.cap5510.FriendAdapter;
-import com.cap5510.cap5510.FriendFeedActivity;
 import com.cap5510.cap5510.R;
-import com.cap5510.cap5510.api.objects.DownloadImageTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
