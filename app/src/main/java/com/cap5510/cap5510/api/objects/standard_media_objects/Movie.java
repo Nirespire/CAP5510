@@ -8,6 +8,7 @@ public class Movie extends StandardMediaObject {
     private String title;
     private int year;
     private MovieIDs ids;
+    private int traktID;
 
     public String getTitle() {
         return title;
@@ -31,5 +32,11 @@ public class Movie extends StandardMediaObject {
 
     public void setIds(MovieIDs ids) {
         this.ids = ids;
+    }
+
+    public int getTraktID(){return traktID;}
+
+    public Movie(int id){
+        traktID = id;
     }
 }
