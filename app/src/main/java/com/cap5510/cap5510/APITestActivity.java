@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cap5510.cap5510.api.AddToWatchHistoryTask;
 import com.cap5510.cap5510.api.AddToWatchlistTask;
 import com.cap5510.cap5510.api.GetWatchlistTask;
 import com.cap5510.cap5510.api.SearchTask;
@@ -42,6 +43,22 @@ public class APITestActivity extends AppCompatActivity {
         watchlistItems.add(movie);
 
         new AddToWatchlistTask().execute(new AsyncTaskInput(this, watchlistItems));
+    }
+
+    public void testPostWatchHistory(View v){
+        ArrayList<WatchlistItem> watchlistItems = new ArrayList<>();
+        WatchlistItem movie = new WatchlistItem(Type.Movie);
+        WatchlistItem show = new WatchlistItem(Type.Show);
+
+        movie.setTraktID(228);
+        movie.setImdbID("tt0372784");
+        movie.setTitle("Batman Begins");
+        movie.setSlug("batman-begins-2005");
+        movie.setYear(2005);
+
+        watchlistItems.add(movie);
+
+        new AddToWatchHistoryTask().execute(new AsyncTaskInput(this, watchlistItems));
     }
 
     public void testSearch(View v){

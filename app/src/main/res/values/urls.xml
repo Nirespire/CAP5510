@@ -15,10 +15,14 @@
     <string name="url_enter_auth_code">https://trakt.tv/activate</string>
 
     <string name="url_get_trending_movies">https://api-v2launch.trakt.tv/movies/trending?extended=images</string>
-    <string name="url_get_watched_tv_shows">https://api-v2launch.trakt.tv/sync/history/shows</string>
+    <string name="url_get_watched_tv_shows">https://api-v2launch.trakt.tv/sync/history/episodes?extended=images</string>
+    <string name="url_shows_partial">https://api-v2launch.trakt.tv/shows/</string>
+    <string name="url_show_progress_partial">/progress/watched?hidden=false&amp;specials=false</string>
 
     <string name="url_get_watchlist">https://api-v2launch.trakt.tv/sync/watchlist?extended=images</string>
     <string name="url_post_watchlist">https://api-v2launch.trakt.tv/sync/watchlist</string>
+
+    <string name="url_post_watch_history">https://api-v2launch.trakt.tv/sync/history</string>
 
     <string name="url_get_friends">https://api-v2launch.trakt.tv/users/me/friends?extended=images</string>
 
