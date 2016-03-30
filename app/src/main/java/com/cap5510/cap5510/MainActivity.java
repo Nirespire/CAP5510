@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         tabSpec.setIndicator("movies");
         tabHost.addTab(tabSpec);*/
 
-        new GetWatchedTvShows().execute(this);
+        //new GetWatchedTvShows().execute(this);
 
 
         //Here is where the code for the navigation drawer begins
@@ -352,14 +352,19 @@ public class MainActivity extends AppCompatActivity {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 int traktID = data.getIntExtra("traktID", -1);
-                Log.e("sanjay", String.valueOf(traktID));
+                Log.d("clicked trakt id", String.valueOf(traktID));
+
+                Bundle idInfo = new Bundle();
+                idInfo.putInt("traktID", traktID);
 
                 MainActivity.this.setTitle("Movie Information");
                 MovieInfoFragment movieInfoFrag = new MovieInfoFragment();
+                movieInfoFrag.setArguments(idInfo);
                 tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
                     .replace(R.id.frame_container, movieInfoFrag, "MovieInfoFragment")
                     .addToBackStack(null)
                     .commitAllowingStateLoss();
+
             }
         }
     }

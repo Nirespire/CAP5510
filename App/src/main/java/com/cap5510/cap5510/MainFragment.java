@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost;
 
+import com.cap5510.cap5510.api.GetWatchedTvShows;
+
 /**
  * Created by Vega on 3/22/2016.
  */
@@ -30,6 +32,7 @@ public class MainFragment extends Fragment {
         tabSpec.setIndicator("movies");
         tabHost.addTab(tabSpec);
         // generateCode();
+        new GetWatchedTvShows().execute(this.getActivity());
         return root;
     }
 
