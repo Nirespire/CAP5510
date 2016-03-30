@@ -25,6 +25,9 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.cap5510.cap5510.api.GetWatchedTvShows;
+import com.cap5510.cap5510.api.objects.TimeConversion;
+
+import java.sql.Time;
 
 public class MainActivity extends AppCompatActivity {
     String TITLES[] = {"Home","Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo", "APITest"};
@@ -41,18 +44,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.setTitle("Home");
 
+        /*String timestr = "2016-03-30 22:06:00";
+
+        Time r = TimeConversion.getEasternTime(timestr);
+
+        Log.e("aishatxy",r.toString());*/
+
         setupActionBar();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       // if (getSupportFragmentManager().findFragmentById(R.id.frame_container) == null) {
+        if (getSupportFragmentManager().findFragmentById(R.id.frame_container) == null) {
             FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
             MainFragment mainFrag = new MainFragment();
             MainActivity.this.setTitle("Home");
             tx.add(R.id.frame_container, mainFrag, "MainFragment")
                     .addToBackStack(null)
                     .commit();
-       // }
+        }
       //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 //        toolbar.setNavigationOnClickListener(this);
