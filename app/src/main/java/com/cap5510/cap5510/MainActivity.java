@@ -29,7 +29,7 @@ import com.cap5510.cap5510.api.objects.TimeConversion;
 
 import java.sql.Time;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     String TITLES[] = {"Home","Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo", "APITest"};
     String NAME = "JPriya";
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView.LayoutManager mLayoutManager;            // Declaring Layout Manager as a linear layout manager
     DrawerLayout Drawer;                                  // Declaring DrawerLayout
     ActionBarDrawerToggle mDrawerToggle;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -287,8 +288,27 @@ public class MainActivity extends AppCompatActivity {
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(this);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String text){
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query){
+
+        final Intent searchIntent = new Intent(getApplicationContext(), SearchActivity.class);
+        // add query to the Intent Extras
+        searchIntent.putExtra(SearchManager.QUERY, query);
+        startActivityForResult(searchIntent, 1);
+
+        searchView.setQuery("", false);
+        searchView.setIconified(true);
         return true;
     }
 
@@ -335,6 +355,7 @@ public class MainActivity extends AppCompatActivity {
     /*
         Search bar sends the query to the main activity, which then passes it to the SearchActivity
         and waits for a result to come back
+        TODO: this this is unnecessary now because of onQueryListener
      */
     private void handleIntent(Intent intent) {
         // Get the intent, verify the action and get the query

@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 
 import com.cap5510.cap5510.api.SearchTask;
