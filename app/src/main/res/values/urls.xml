@@ -26,6 +26,12 @@
 
     <string name="url_get_friends">https://api-v2launch.trakt.tv/users/me/friends?extended=images</string>
 
+    <string name="url_get_movie_recommendations">https://api-v2launch.trakt.tv/recommendations/movies?extended=images</string>
+    <string name="url_get_show_recommendations">https://api-v2launch.trakt.tv/recommendations/shows?extended=images</string>
+
+    <string name="url_hide_movie_recommendation">https://api-v2launch.trakt.tv/recommendations/movies/</string>
+    <string name="url_hide_show_recommendation">https://api-v2launch.trakt.tv/recommendations/shows/</string>
+
     <string name="url_search">https://api-v2launch.trakt.tv/search?</string>
 
     <string name="url_movies_partial">https://api-v2launch.trakt.tv/movies/</string>

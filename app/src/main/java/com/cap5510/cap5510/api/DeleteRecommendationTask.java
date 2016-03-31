@@ -1,33 +1,21 @@
 package com.cap5510.cap5510.api;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-
 import com.cap5510.cap5510.R;
 import com.cap5510.cap5510.api.objects.AsyncTaskInput;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import com.cap5510.cap5510.api.objects.WatchlistItem;
 import java.io.IOException;
-
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/**
- * Copy and paste this code when creating a new API call to save some time
- */
-public class TemplateAPITask extends AsyncTask<AsyncTaskInput, Integer, Response> {
 
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+public class DeleteRecommendationTask extends AsyncTask<AsyncTaskInput, Integer, Response> {
 
     private Activity a;
     private Fragment f;
@@ -38,30 +26,39 @@ public class TemplateAPITask extends AsyncTask<AsyncTaskInput, Integer, Response
     protected Response doInBackground(AsyncTaskInput... params) {
 
         a = params[0].getActivity();
+        f = params[0].getFragment();
         c = a.getApplicationContext();
 
+        WatchlistItem w = (WatchlistItem) params[0].getPayload();
+
         OkHttpClient client = new OkHttpClient();
-        String url = c.getString(-1);   // TODO ADD YOUR URL HERE
+        String url;
+
+        if(w.getType() == Type.Movie){
+            url = c.getString(R.string.url_hide_movie_recommendation)+w.getTraktID();
+        }
+        else if(w.getType() == Type.Show){
+            url = c.getString(R.string.url_hide_show_recommendation)+w.getTraktID();
+        }
+        else{
+            return null;
+        }
+
         Response response = null;
-        JSONObject json = new JSONObject();
 
         sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
         String accessToken = sharedPref.getString(c.getString(R.string.json_access_token), null);
 
         try{
 
-            //RequestBody rb = RequestBody.create(JSON, json.toString());
-
             Request request = new Request.Builder()
                     .addHeader("Content-Type", "application/json")
-                            //.addHeader("Authorization", "Bearer " + accessToken)
+                    .addHeader("Authorization", "Bearer " + accessToken)
                     .addHeader("trakt-api-version", "2")
                     .addHeader("trakt-api-key", c.getString(R.string.api_key))
-                            //.post(rb)
                     .url(url)
+                    .delete()
                     .build();
-
-
 
             response = client.newCall(request).execute();
 
@@ -69,9 +66,6 @@ public class TemplateAPITask extends AsyncTask<AsyncTaskInput, Integer, Response
         } catch (IOException e) {
 
         }
-//      catch(JSONException j){
-//
-//      }
 
         return response;
     }
@@ -92,18 +86,6 @@ public class TemplateAPITask extends AsyncTask<AsyncTaskInput, Integer, Response
             return;
         }
 
-        try {
-            String response = result.body().string();
-
-            Log.e("sanjay", response);
-
-        }
-        catch(IOException e){
-            Log.e("sanjay", "IO Exception when postExecute ... ");
-            Log.e("sanjay", e.getMessage());
-        }
-
-
-
+        Log.e("sanjay", String.valueOf(result.code()));
     }
 }
