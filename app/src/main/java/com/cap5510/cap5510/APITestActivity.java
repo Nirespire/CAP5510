@@ -1,14 +1,13 @@
 package com.cap5510.cap5510;
 
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.cap5510.cap5510.api.AddToWatchHistoryTask;
 import com.cap5510.cap5510.api.AddToWatchlistTask;
+import com.cap5510.cap5510.api.GetRecommendationsTask;
 import com.cap5510.cap5510.api.GetWatchlistTask;
 import com.cap5510.cap5510.api.SearchTask;
 import com.cap5510.cap5510.api.Type;
@@ -59,6 +58,10 @@ public class APITestActivity extends AppCompatActivity {
         watchlistItems.add(movie);
 
         new AddToWatchHistoryTask().execute(new AsyncTaskInput(this, watchlistItems));
+    }
+
+    public void testGetMovieRecommendations(View v){
+        new GetRecommendationsTask().execute(new AsyncTaskInput(this, null));
     }
 
     public void testSearch(View v){

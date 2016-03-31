@@ -113,4 +113,19 @@ public class WatchlistItem {
     public void setPosterURL(String posterURL) {
         this.posterURL = posterURL;
     }
+
+    @Override
+    public String toString() {
+        return "WatchlistItem{" +
+                "type=" + type +
+                ", title='" + title + '\'' +
+                ", episodes=" + episodes +
+                ", season=" + season +
+                ", year=" + year +
+                ", traktID=" + traktID +
+                ", slug='" + slug + '\'' +
+                ", imdbID='" + imdbID + '\'' +
+                ", posterURL='" + posterURL + '\'' +
+                '}';
+    }
 }
