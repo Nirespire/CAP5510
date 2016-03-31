@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +19,9 @@ import com.cap5510.cap5510.Friend;
 import com.cap5510.cap5510.FriendAdapter;
 import com.cap5510.cap5510.FriendFeedActivity;
 import com.cap5510.cap5510.FriendFeedFragment;
+import com.cap5510.cap5510.MainActivity;
 import com.cap5510.cap5510.R;
+import com.cap5510.cap5510.RecommendationFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -129,6 +133,7 @@ public class FriendsTask extends AsyncTask<Activity, Integer, Response> {
 //                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
 //                    byte[] b = baos.toByteArray();
+
 
                     Intent intent = new Intent(c,FriendFeedActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

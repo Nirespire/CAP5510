@@ -28,10 +28,12 @@ import com.cap5510.cap5510.api.GetWatchedTvShows;
 import com.cap5510.cap5510.api.objects.TimeConversion;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     String TITLES[] = {"Home","Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo", "APITest"};
-    String NAME = "JPriya";
+    String NAME = "";
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
     RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
     RecyclerView.LayoutManager mLayoutManager;            // Declaring Layout Manager as a linear layout manager
@@ -44,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.setTitle("Home");
 
-        /*String timestr = "2016-03-30 22:06:00";
+       /* String timestr = "2016-03-30 03:55:00";
 
-        Time r = TimeConversion.getEasternTime(timestr);
+        Date r = TimeConversion.getEasternTime(timestr);
 
         Log.e("aishatxy",r.toString());*/
 
         setupActionBar();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         if (getSupportFragmentManager().findFragmentById(R.id.frame_container) == null) {
@@ -61,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
             tx.add(R.id.frame_container, mainFrag, "MainFragment")
                     .addToBackStack(null)
                     .commit();
+
         }
+
       //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 //        toolbar.setNavigationOnClickListener(this);
@@ -128,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                         case 2:
                             //intent = new Intent(c,CalendarActivity.class);
                             MainActivity.this.setTitle("Calendar");
-                            CalendarFragment calendarFrag = new CalendarFragment();
+                            MainCalendarFragment calendarFrag = new MainCalendarFragment();
                             tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
                             .replace(R.id.frame_container, calendarFrag, "CalendarFragment")
                                     .addToBackStack(null)

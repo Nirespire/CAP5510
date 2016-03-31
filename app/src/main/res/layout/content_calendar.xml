@@ -14,9 +14,10 @@
     android:layout_alignWithParentIfMissing="true"
     android:layout_alignParentTop="true"&ndash;&gt;>-->
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="FRIDAY"
         android:textStyle="bold"
         android:layout_gravity="center"
@@ -26,7 +27,7 @@
      <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray"/>-->
 
 
 

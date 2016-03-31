@@ -13,9 +13,9 @@ public class TimeConversion {
 
     private static String UTCTimestr;
 
-    public static Time getEasternTime(String time) {
+    public static Date getEasternTime(String time) {
         // System.out.println("Hello World");
-        Time result = null;
+        Date result = null;
         try{
            // String timestr = "2014-07-14 01:00:00";
             UTCTimestr = time;
@@ -41,7 +41,7 @@ public class TimeConversion {
 
 
 
-    private static Time convertToGmt(Calendar cal) {
+    private static Date convertToGmt(Calendar cal) {
 
         Date date = cal.getTime();
         System.out.println(date);
@@ -66,9 +66,9 @@ public class TimeConversion {
 //
        // System.out.println("Created EST cal with date [" + gmtCal.getTime() + "]");
 //
-        Date timedate = gmtCal.getTime();
-        Time time =new Time(timedate.getTime());
-        return time;
+      //  Date timedate = gmtCal.getTime();
+      //  Time time =new Time(timedate.getTime());
+        return gmtCal.getTime();
 
     }
 }
