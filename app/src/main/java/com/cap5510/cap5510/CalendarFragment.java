@@ -35,8 +35,15 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPage = getArguments().getInt(ARG_PAGE);
-        count++;
+
+        if(getArguments() != null) {
+            mPage = getArguments().getInt(ARG_PAGE);
+            count++;
+        }
+        else{
+            mPage = 1;
+            count++;
+        }
 
         Log.e("aishxy", "" + count);
     }
@@ -45,10 +52,6 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.content_calendar,container, false);
-
-
-
-
 
         //get the date of the fragment selected
         int offset = getOffset(mPage);

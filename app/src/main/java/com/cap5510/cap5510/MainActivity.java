@@ -1,6 +1,8 @@
 package com.cap5510.cap5510;
 
 import android.app.SearchManager;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -58,12 +60,29 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setSupportActionBar(toolbar);
 
         if (getSupportFragmentManager().findFragmentById(R.id.frame_container) == null) {
+
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            String setting = sharedPref.getString(getString(R.string.pref_start_page_type), "-1");
+
+            Log.e("sanjay", setting);
+
+            Fragment f;
             FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-            MainFragment mainFrag = new MainFragment();
-            MainActivity.this.setTitle("Home");
-            tx.add(R.id.frame_container, mainFrag, "MainFragment")
-                    .addToBackStack(null)
-                    .commit();
+
+            if(setting.equals("1")) {
+                f = new MainFragment();
+                MainActivity.this.setTitle("Home");
+                tx.add(R.id.frame_container, f, "MainFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+            else if(setting.equals("2")){
+                f = new CalendarFragment();
+                MainActivity.this.setTitle("Home");
+                tx.add(R.id.frame_container, f, "CalendarFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
 
         }
 

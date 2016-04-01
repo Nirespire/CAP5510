@@ -69,6 +69,9 @@
 
     <string name="pref_header_custom_settings">Custom Settings</string>
 
+    <string name="pref_start_page_type">startpagetype</string>
+    <string name="pref_reminder_notifications">remindernotifications</string>
+
     <string name="pref_title_new_message_notifications">New message notifications</string>
 
     <string name="pref_title_ringtone">Ringtone</string>
