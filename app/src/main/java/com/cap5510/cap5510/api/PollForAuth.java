@@ -57,7 +57,7 @@ public class PollForAuth extends AsyncTask<Activity, Integer, Response> {
 
             a = params[0];
             c = a.getApplicationContext();
-            sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
+            sharedPref = c.getSharedPreferences("api", Context.MODE_PRIVATE);
 
             String deviceCode = sharedPref.getString(c.getString(R.string.json_device_code), "");
             String clientID = c.getString(R.string.api_key);

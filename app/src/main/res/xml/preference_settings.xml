@@ -2,20 +2,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
   <PreferenceCategory android:title="@string/pref_user_settings">
 
-
-
     <ListPreference  android:title="@string/settings_title"
         android:summary="Select the page you want to see first"
-        android:key="startpagetype"
+        android:key="@string/pref_start_page_type"
         android:defaultValue="1"
         android:entries="@array/list_array"
         android:entryValues="@array/list_values" />
 
-
-
         <SwitchPreference
             android:defaultValue="true"
-            android:key="reminders_message"
+            android:key="@string/pref_reminder_notifications"
             android:title="Reminders" />
 
       <Preference

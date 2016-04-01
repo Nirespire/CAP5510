@@ -1,7 +1,9 @@
 package com.cap5510.cap5510;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,9 +43,40 @@ public class RecommendationFragment extends Fragment
     }
 
     private void setOnClickListeners(){
+        ImageView posterImage = (ImageView) root.findViewById(R.id.recommendation_image);
         ImageButton watchlistButton = (ImageButton) root.findViewById(R.id.add_to_watchlist_button);
         ImageButton hideButton = (ImageButton) root.findViewById(R.id.hide_button);
         ImageButton nextButton = (ImageButton) root.findViewById(R.id.next_button);
+
+        posterImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!currentItems.isEmpty()) {
+                    FragmentTransaction tx = getActivity().getSupportFragmentManager().beginTransaction();
+                    Bundle idInfo = new Bundle();
+                    idInfo.putInt("traktID", currentItems.get(0).getTraktID());
+                    Fragment f;
+
+                    if(currentItems.get(0).getType() == Type.Movie) {
+                        f = new MovieInfoFragment();
+                        f.setArguments(idInfo);
+                        tx.remove(getActivity().getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                                .replace(R.id.frame_container, f, "MovieInfoFragment")
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else if(currentItems.get(0).getType() == Type.Show){
+                        f = new ShowInfoFragment();
+                        f.setArguments(idInfo);
+                        tx.remove(getActivity().getSupportFragmentManager().findFragmentById(R.id.frame_container))
+                                .replace(R.id.frame_container, f, "MovieInfoFragment")
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                }
+            }
+        });
 
         watchlistButton.setOnClickListener(new View.OnClickListener() {
             @Override
