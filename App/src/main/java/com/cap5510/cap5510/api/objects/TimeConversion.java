@@ -20,7 +20,7 @@ public class TimeConversion {
            // String timestr = "2014-07-14 01:00:00";
             UTCTimestr = time;
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //if 24 hour format
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"); //if 24 hour format
 
 
             Date d1 =(Date)format.parse(UTCTimestr);

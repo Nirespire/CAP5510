@@ -33,7 +33,26 @@ public class CalendarFragmentAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Log.e("aishatu", "" + position);
-        return CalendarFragment.newInstance(position+1);
+        switch(position) {
+            case 0:
+                return SundayFragment.newInstance(position+1);
+            case 1:
+                return MondayFragment.newInstance(position+1);
+            case 2:
+                return TuesdayFragment.newInstance(position+1);
+            case 3:
+                return WednesdayFragment.newInstance(position+1);
+            case 4:
+                return ThursdayFragment.newInstance(position+1);
+            case 5:
+                return FridayFragment.newInstance(position+1);
+            case 6:
+                return SaturdayFragment.newInstance(position+1);
+
+            default:
+                return CalendarFragment.newInstance(position+1);
+        }
+
 
     }
 

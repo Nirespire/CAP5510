@@ -63,8 +63,7 @@ public class MainCalendarFragment extends Fragment {
         String month = getDay[1];
 
 
-
-
+        String months[] = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
         String month30[] = {"Apr","Jun","Sep","Nov"};
 
         if(Arrays.asList(month30).contains(month)) {
@@ -98,8 +97,22 @@ public class MainCalendarFragment extends Fragment {
         }
         int current_day = Integer.parseInt(getDay[2]);
 
-        int sunday = (current_day - offset)%enddate;
+        int sunday = (((current_day - offset)%enddate)+enddate)%enddate;
+
+        if(sunday > current_day)
+        {
+            int index = Arrays.asList(months).indexOf(month);
+            Log.e("aishatb",""+index);
+            String prev_month = months[(((index -1)%months.length)+months.length)%months.length];
+
+            if(Arrays.asList(month30).contains(prev_month)) {
+                enddate = 31;
+            }else{
+                enddate = 32;
+            }
+        }
         result[0] = ""+sunday;
+
         int next = 1;
         int monday = (sunday + next)%enddate;
         next++;
@@ -108,6 +121,14 @@ public class MainCalendarFragment extends Fragment {
             next=1;
             sunday = monday;
 
+        }
+        else if(monday==enddate-1)
+        {
+            if(Arrays.asList(month30).contains(month)) {
+                enddate = 31;
+            }else{
+                enddate = 32;
+            }
         }
         result[1] = ""+monday;
         int tuesday =(sunday + next)%enddate;
@@ -118,6 +139,14 @@ public class MainCalendarFragment extends Fragment {
             sunday = tuesday;
 
         }
+        else if(tuesday==enddate-1)
+        {
+            if(Arrays.asList(month30).contains(month)) {
+                enddate = 31;
+            }else{
+                enddate = 32;
+            }
+        }
         result[2] = ""+tuesday;
         int wednesday =(sunday + next)%enddate;
         next++;
@@ -126,6 +155,14 @@ public class MainCalendarFragment extends Fragment {
             next=1;
             sunday = wednesday;
 
+        }
+        else if(wednesday==enddate-1)
+        {
+            if(Arrays.asList(month30).contains(month)) {
+                enddate = 31;
+            }else{
+                enddate = 32;
+            }
         }
         result[3] = ""+wednesday;
         int thursday = (sunday + next)%enddate;
@@ -136,6 +173,14 @@ public class MainCalendarFragment extends Fragment {
             sunday = thursday;
 
         }
+        else if(thursday==enddate-1)
+        {
+            if(Arrays.asList(month30).contains(month)) {
+                enddate = 31;
+            }else{
+                enddate = 32;
+            }
+        }
         result[4] = ""+thursday;
         int friday =(sunday + next)%enddate;
         next++;
@@ -145,12 +190,28 @@ public class MainCalendarFragment extends Fragment {
             sunday = friday;
 
         }
+        else if(friday==enddate-1)
+        {
+            if(Arrays.asList(month30).contains(month)) {
+                enddate = 31;
+            }else{
+                enddate = 32;
+            }
+        }
         result[5] = ""+friday;
         int saturday = (sunday + next)%enddate;
         next++;
         if(saturday == 0){
             saturday++;
 
+        }
+        else if(saturday==enddate-1)
+        {
+            if(Arrays.asList(month30).contains(month)) {
+                enddate = 31;
+            }else{
+                enddate = 32;
+            }
         }
         result[6] = ""+saturday;
 

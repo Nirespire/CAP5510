@@ -62,14 +62,14 @@ public class CalendarFragment extends Fragment {
         String date =  ft.format(dNow);
         Log.e("aishatw",date);
 
-        EventView v = (EventView)root.findViewById(R.id.sevenpm8pmevent);
+        EventView v = (EventView)root.findViewById(R.id.tenpm11pmevent);
         v.setVisibility(View.VISIBLE);
 
         v.setTitle("Title" + mPage);
         return root;
     }
 
-    private int getOffset(int page) {
+    public int getOffset(int page) {
 
         int offset = 0;
 

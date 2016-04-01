@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="EventView">
-        <attr name="timeText" format="string" localization="suggested" />
+        <!--<attr name="timeText" format="string" localization="suggested" />-->
         <attr name="eventText" format="string" localization="suggested" />
     </declare-styleable>
 

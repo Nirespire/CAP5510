@@ -26,7 +26,7 @@ public class EventView extends LinearLayout {
 
             TypedArray a = context.obtainStyledAttributes(attrs,
                     R.styleable.EventView, 0, 0);
-            String timeText = a.getString(R.styleable.EventView_timeText);
+           // String timeText = a.getString(R.styleable.EventView_timeText);
             String eventText = a.getString(R.styleable.EventView_eventText);
             a.recycle();
 
@@ -48,11 +48,11 @@ public class EventView extends LinearLayout {
 
             mImage = (ImageView) getChildAt(2);*/
 
-            mTime = (TextView)getChildAt(0);
-            mValue = (View)getChildAt(1);
-            mTitle = (TextView)getChildAt(2);
+           // mTime = (TextView)getChildAt(0);
+           // mValue = (View)getChildAt(1);
+            mTitle = (TextView)getChildAt(0);
 
-            mTime.setText(timeText);
+           // mTime.setText(timeText);
             mTitle.setText(eventText);
         }
 
@@ -67,12 +67,12 @@ public class EventView extends LinearLayout {
         public void setImageVisible(boolean visible) {
             mImage.setVisibility(visible ? View.VISIBLE : View.GONE);
         }*/
-
+        /*
         public void setEventTime(String start,String end){
             String time = start+" - "+end;
             mTime.setText(time);
         }
-
+        */
         public void setTitle(String title) {
             mTitle.setText(title);
         }
