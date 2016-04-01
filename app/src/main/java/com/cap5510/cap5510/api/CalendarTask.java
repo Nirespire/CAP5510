@@ -126,10 +126,11 @@ public class CalendarTask extends AsyncTask<Fragment, Integer, Response> {
                     int index = Arrays.asList(times).indexOf(time);
                     int id = eventids[index];
 
-                    EventView v = (EventView)a.getView().findViewById(id);
-                    v.setTitle(title+" S"+season+"E"+episode);
-                    v.setVisibility(View.VISIBLE);
-
+                    if(a.getView()!=null) {
+                        EventView v = (EventView) a.getView().findViewById(id);
+                        v.setTitle(title + " S" + season + "E" + episode);
+                        v.setVisibility(View.VISIBLE);
+                    }
 
 
                 }

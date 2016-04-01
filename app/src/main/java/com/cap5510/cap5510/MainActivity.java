@@ -66,20 +66,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
             Log.e("sanjay", setting);
 
-            Fragment f;
+            //Fragment f;
             FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
 
             if(setting.equals("1")) {
-                f = new MainFragment();
+                MainFragment f = new MainFragment();
                 MainActivity.this.setTitle("Home");
                 tx.add(R.id.frame_container, f, "MainFragment")
                         .addToBackStack(null)
                         .commit();
             }
             else if(setting.equals("2")){
-                f = new CalendarFragment();
+                MainCalendarFragment g = new MainCalendarFragment();
                 MainActivity.this.setTitle("Home");
-                tx.add(R.id.frame_container, f, "CalendarFragment")
+                tx.add(R.id.frame_container, g, "CalendarFragment")
                         .addToBackStack(null)
                         .commit();
             }
