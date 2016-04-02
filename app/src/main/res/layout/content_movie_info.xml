@@ -136,7 +136,8 @@
         <TableLayout
             android:paddingTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/movieCommentTable">
             <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
@@ -144,60 +145,60 @@
                     android:textSize="18sp"
                     android:text="Comments"/>
             </TableRow>
-            <TableRow
-                android:padding="5dp"
-                android:id="@+id/comment1"
-                android:background="@color/button_material_light"
-                android:layout_weight="1">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/profile_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/profileperson">
-                </de.hdodenhof.circleimageview.CircleImageView>
+            <!--<TableRow-->
+                <!--android:padding="5dp"-->
+                <!--android:id="@+id/comment1"-->
+                <!--android:background="@color/button_material_light"-->
+                <!--android:layout_weight="1">-->
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:id="@+id/profile_image"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:src="@drawable/profileperson">-->
+                <!--</de.hdodenhof.circleimageview.CircleImageView>-->
 
-                <TableLayout
-                    android:layout_weight="0.33">
-                    <TextView android:id="@+id/username"
-                        android:text="JPriya"
-                        android:layout_gravity="center"
-                        android:textSize="20sp"
-                        android:textColor="@android:color/primary_text_light"
-                        />
-                    <TextView android:id="@+id/date"
-                        android:text="October 21, 2014"
-                        android:textColor="#303030" />
-                </TableLayout>
+                <!--<TableLayout-->
+                    <!--android:layout_weight="0.33">-->
+                    <!--<TextView android:id="@+id/username"-->
+                        <!--android:text="JPriya"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:textSize="20sp"-->
+                        <!--android:textColor="@android:color/primary_text_light"-->
+                        <!--/>-->
+                    <!--<TextView android:id="@+id/date"-->
+                        <!--android:text="October 21, 2014"-->
+                        <!--android:textColor="#303030" />-->
+                <!--</TableLayout>-->
 
-                <TableLayout
-                    android:layout_weight="0.1">
-                    <TableRow>
-                        <ImageButton
-                            android:src="@drawable/small_like"
-                            android:layout_width="30dp"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/likebutton"
-                            android:adjustViewBounds="true" />
-                        <TextView
-                            android:text="12 likes"
-                            android:layout_gravity="center"/>
-                    </TableRow>
-                    <TableRow>
-                        <ImageButton
-                            android:src="@drawable/smallcomment"
-                            android:layout_width="30dp"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/commentbutton"
-                            android:adjustViewBounds="true" />
-                        <TextView
-                            android:text="3 replies"
-                            android:layout_gravity="center"/>
-                    </TableRow>
+                <!--<TableLayout-->
+                    <!--android:layout_weight="0.1">-->
+                    <!--<TableRow>-->
+                        <!--<ImageButton-->
+                            <!--android:src="@drawable/small_like"-->
+                            <!--android:layout_width="30dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/likebutton"-->
+                            <!--android:adjustViewBounds="true" />-->
+                        <!--<TextView-->
+                            <!--android:text="12 likes"-->
+                            <!--android:layout_gravity="center"/>-->
+                    <!--</TableRow>-->
+                    <!--<TableRow>-->
+                        <!--<ImageButton-->
+                            <!--android:src="@drawable/smallcomment"-->
+                            <!--android:layout_width="30dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/commentbutton"-->
+                            <!--android:adjustViewBounds="true" />-->
+                        <!--<TextView-->
+                            <!--android:text="3 replies"-->
+                            <!--android:layout_gravity="center"/>-->
+                    <!--</TableRow>-->
 
-                </TableLayout>
+                <!--</TableLayout>-->
 
-            </TableRow>
+            <!--</TableRow>-->
 
             <TableRow
                 android:layout_width="match_parent"

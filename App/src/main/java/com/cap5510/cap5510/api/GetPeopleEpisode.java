@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.cap5510.cap5510.R;
 import com.cap5510.cap5510.api.objects.AsyncTaskInput;
+import com.cap5510.cap5510.api.objects.standard_media_objects.Episode;
 import com.cap5510.cap5510.api.objects.standard_media_objects.Movie;
 
 import org.json.JSONArray;
@@ -26,7 +26,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetPeopleMovie extends AsyncTask<AsyncTaskInput, Integer, Response> {
+public class GetPeopleEpisode extends AsyncTask<AsyncTaskInput, Integer, Response> {
 
     Activity a = null;
     Context c = null;
@@ -36,13 +36,12 @@ public class GetPeopleMovie extends AsyncTask<AsyncTaskInput, Integer, Response>
     protected Response doInBackground(AsyncTaskInput... params) {
         a = params[0].getActivity();
         c = a.getApplicationContext();
-        id = ((Movie) params[0].getPayload()).getTraktID();
+        id = ((Episode) params[0].getPayload()).getID();
 
 
         OkHttpClient client = new OkHttpClient();
-        String url = c.getString(R.string.url_movies_partial) + Integer.toString(id) + "/people?extended=full,images";
+        String url = c.getString(R.string.url_shows_partial) + Integer.toString(id) + "/people?extended=full,images";
         String apiKey = c.getString(R.string.api_key);
-        String accessToken = c.getString(R.string.access_token);
         Response response = null;
 
         try {
@@ -110,7 +109,7 @@ public class GetPeopleMovie extends AsyncTask<AsyncTaskInput, Integer, Response>
                     personLayout.addView(headshot);
                     personLayout.addView(name);
 
-                    LinearLayout movieCast =(LinearLayout)a.findViewById(R.id.movieCast);
+                    LinearLayout movieCast =(LinearLayout)a.findViewById(R.id.episodeCast);
                     movieCast.addView(personLayout);
                 }
 
