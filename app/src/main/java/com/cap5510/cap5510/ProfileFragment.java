@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
 
         name.setText(current_user);
 
-        picture.setBackgroundResource(R.drawable.loading);
+        picture.setImageResource(R.drawable.loading);
         new DownloadImageTask(picture).execute(icon);
 
         new GetFriendWatchedHistoryTask(current_user).execute(this.getActivity());

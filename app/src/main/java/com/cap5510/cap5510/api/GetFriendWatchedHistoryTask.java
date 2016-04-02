@@ -110,7 +110,7 @@ public class GetFriendWatchedHistoryTask extends AsyncTask<Activity, Integer, Re
                     case "show":
                         logo= currentItem.getJSONObject("show").getJSONObject("images").getJSONObject("poster").getString("thumb");
                         if(sh<5) {
-                            simg[sh].setBackgroundResource(R.drawable.loading);
+                            simg[sh].setImageResource(R.drawable.loading);
                             new DownloadImageTask(simg[sh]).execute(logo);
                             sh++;
                         }
@@ -119,7 +119,7 @@ public class GetFriendWatchedHistoryTask extends AsyncTask<Activity, Integer, Re
                         logo= currentItem.getJSONObject("show").getJSONObject("images").getJSONObject("poster").getString("thumb");
                         Log.e("aishatx",logo);
                         if(sh<5) {
-                            simg[sh].setBackgroundResource(R.drawable.loading);
+                            simg[sh].setImageResource(R.drawable.loading);
                             new DownloadImageTask(simg[sh]).execute(logo);
                             String episode = "S"+currentItem.getJSONObject("episode").getString("season")+"E"+
                                     currentItem.getJSONObject("episode").getString("number");
@@ -130,7 +130,7 @@ public class GetFriendWatchedHistoryTask extends AsyncTask<Activity, Integer, Re
                     case "movie":
                         logo= currentItem.getJSONObject("movie").getJSONObject("images").getJSONObject("poster").getString("thumb");
                         if(mo<5) {
-                            mimg[mo].setBackgroundResource(R.drawable.loading);
+                            mimg[mo].setImageResource(R.drawable.loading);
                             new DownloadImageTask(mimg[mo]).execute(logo);
                             mo++;
                         }

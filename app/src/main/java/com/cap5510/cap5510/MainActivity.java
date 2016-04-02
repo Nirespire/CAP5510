@@ -36,7 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
-    String TITLES[] = {"Queue","Calendar","Profile","Recommendation","Watchlist","FriendFeed"};
+    String TITLES[] = {"Queue","Calendar","Profile","Recommendation","FriendFeed"};
     String NAME = "";
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
     RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View

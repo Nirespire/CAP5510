@@ -109,7 +109,7 @@ public class FriendProfileTask extends AsyncTask<Activity, Integer, Response> {
                             break;
                     }
                     Log.e("aishatx", logo);
-                    img[i].setBackgroundResource(R.drawable.loading);
+                    img[i].setImageResource(R.drawable.loading);
                     new DownloadImageTask(img[i]).execute(logo);
                 }else{
                     if(i==0) {
