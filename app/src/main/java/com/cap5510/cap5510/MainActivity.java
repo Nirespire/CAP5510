@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             //Fragment f;
             FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
 
-            if(setting.equals("1") || setting.equals("-1")) {
+            if(setting.equals("1")) {
                 MainFragment f = new MainFragment();
                 MainActivity.this.setTitle("Home");
                 tx.add(R.id.frame_container, f, "MainFragment")
