@@ -29,13 +29,14 @@ import android.widget.Toast;
 import com.cap5510.cap5510.api.GetWatchedTvShows;
 import com.cap5510.cap5510.api.UserProfileTask;
 import com.cap5510.cap5510.api.objects.TimeConversion;
+import com.cap5510.cap5510.api.objects.standard_media_objects.Episode;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
-    String TITLES[] = {"Home","Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo", "APITest"};
+    String TITLES[] = {"Queue","Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo", "APITest"};
     String NAME = "";
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
     RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
@@ -87,6 +88,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         .addToBackStack(null)
                         .commit();
             }
+           MainFragment mainFrag = new MainFragment();
+            MainActivity.this.setTitle("Queue");
+            tx.add(R.id.frame_container, mainFrag, "MainFragment")
+                    .addToBackStack(null)
+                    .commit();
 
 
 

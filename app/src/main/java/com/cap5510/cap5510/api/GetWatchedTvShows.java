@@ -2,7 +2,9 @@ package com.cap5510.cap5510.api;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.cap5510.cap5510.R;
@@ -21,20 +23,26 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetWatchedTvShows extends AsyncTask<Activity, Integer, Response> {
+public class GetWatchedTvShows extends AsyncTask<AsyncTaskInput, Integer, Response> {
 
     Activity a = null;
     Context c = null;
+    Fragment f = null;
+
+    private SharedPreferences sharedPref;
 
     @Override
-    protected Response doInBackground(Activity... params) {
-        a = params[0];
+    protected Response doInBackground(AsyncTaskInput... params) {
+        a = params[0].getActivity();
         c = a.getApplicationContext();
+        f = params[0].getFragment();
 
         OkHttpClient client = new OkHttpClient();
         String url = c.getString(R.string.url_get_watched_tv_shows);
         String apiKey = c.getString(R.string.api_key);
-        String accessToken = c.getString(R.string.access_token);
+
+        sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
+        String accessToken = sharedPref.getString(c.getString(R.string.json_access_token), null);
         Response response = null;
 
         try {
@@ -118,7 +126,7 @@ public class GetWatchedTvShows extends AsyncTask<Activity, Integer, Response> {
             Episode ep;
             for (WatchlistItem it : items) {
                 ep = new Episode(it.getTraktID(), it.getPosterURL());
-                temp = new AsyncTaskInput(a, ep);
+                temp = new AsyncTaskInput(a, f, ep);
                 new GetTvProgress().execute(temp);
             }
 

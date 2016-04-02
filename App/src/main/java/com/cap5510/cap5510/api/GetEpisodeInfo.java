@@ -1,21 +1,18 @@
 package com.cap5510.cap5510.api;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cap5510.cap5510.R;
-import com.cap5510.cap5510.api.DownloadImageTask;
 import com.cap5510.cap5510.api.objects.AsyncTaskInput;
 import com.cap5510.cap5510.api.objects.standard_media_objects.Episode;
 import com.cap5510.cap5510.api.objects.standard_media_objects.Movie;
@@ -29,21 +26,22 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetMovieInfo extends AsyncTask<AsyncTaskInput, Integer, Response> {
+public class GetEpisodeInfo extends AsyncTask<AsyncTaskInput, Integer, Response> {
 
     Activity a = null;
     Context c = null;
-    int id = -1;
+    Episode episode = null;
 
     @Override
     protected Response doInBackground(AsyncTaskInput... params) {
         a = params[0].getActivity();
         c = a.getApplicationContext();
-        id = ((Movie) params[0].getPayload()).getTraktID();
+        episode = ((Episode) params[0].getPayload());
 
 
         OkHttpClient client = new OkHttpClient();
-        String url = c.getString(R.string.url_movies_partial) + Integer.toString(id) + "?extended=full,images";
+        String url = c.getString(R.string.url_shows_partial) + Integer.toString(episode.getID()) + "/seasons/" +
+                Integer.toString(episode.getSeason()) + "/episodes/" + Integer.toString(episode.getNumber()) +"?extended=full,images";
         String apiKey = c.getString(R.string.api_key);
 
         Response response = null;
@@ -69,23 +67,26 @@ public class GetMovieInfo extends AsyncTask<AsyncTaskInput, Integer, Response> {
         try {
 
             String response = result.body().string();
-            //Log.d("stevie", response);
+            Log.d("current ep", response);
 
             JSONObject movie = new JSONObject(response);
-            String logo = movie.getJSONObject("images").getJSONObject("logo").getString("full");
 
-            ImageView image = (ImageView) a.findViewById(R.id.movieImage);
-            new DownloadImageTask(image).execute(logo);
 
-//            TextView title = (TextView) a.findViewById(R.id.movieTitle);
-//            title.setText(movie.getString("title"));
+            TextView title = (TextView) a.findViewById(R.id.episodeTitle);
+            title.setText(movie.getString("title"));
+            title.setTextColor(c.getResources().getColor(R.color.colorPrimary));
 
-            TextView rating = (TextView) a.findViewById(R.id.movieRating);
+            TextView rating = (TextView) a.findViewById(R.id.episodeRating);
             rating.setText(String.format("%.0f", movie.getDouble("rating")*10)+ "%");
 
 
-            TextView overview = (TextView) a.findViewById(R.id.movieOverview);
+            TextView overview = (TextView) a.findViewById(R.id.episodeOverview);
             overview.setText(movie.getString("overview"));
+
+            ImageView fullHeart = (ImageView) a.findViewById(R.id.fullHeart);
+            fullHeart.setImageResource(R.drawable.favorite2);
+            ImageView emptyHeart = (ImageView) a.findViewById(R.id.emptyheart);
+            emptyHeart.setImageResource(R.drawable.emptyheart);
 
 
         }

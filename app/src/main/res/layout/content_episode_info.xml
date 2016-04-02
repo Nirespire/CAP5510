@@ -22,26 +22,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/b99_screen"
                     android:adjustViewBounds="true"
-                    android:id="@+id/imageView"/>
+                    android:id="@+id/episodeImage"
+                    android:layout_weight="1"/>
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="3X18 Cheddar"
                     android:textAlignment="center"
-                    android:textColor="@android:color/primary_text_light"
-                    android:allowUndo="false"
-                    android:layout_below="@+id/imageView"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:id="@+id/textView"
-                    android:textSize="25sp" />
+                    android:textColor="@android:color/primary_text_dark"
+                    android:id="@+id/episodeTitle"
+                    android:textSize="25sp"
+                    android:layout_weight="1"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/episodeOverview"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -52,8 +60,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:layout_weight="0.25"
-                    android:id="@+id/imageButton"
-                    android:src="@drawable/favorite2"
+                    android:id="@+id/fullHeart"
                     android:background="#ffffff"/>
                     <!--android:layout_gravity="left|center_vertical" />-->
 
@@ -62,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="100%"
-                    android:id="@+id/textView2"
+                    android:id="@+id/episodeRating"
                     android:layout_weight="0.25"
                     android:textSize="23sp"
                     android:textColor="@android:color/primary_text_light"
@@ -73,8 +80,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:layout_weight="0.25"
-                    android:id="@+id/imageButton2"
-                    android:src="@drawable/emptyheart"
+                    android:id="@+id/emptyheart"
                     android:background="#ffffff"
                     android:layout_gravity="center_vertical|right" />
 
@@ -112,58 +118,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:paddingLeft="10dp">
-                        <ImageView
-                            android:id="@+id/andy1"
-                            android:src="@drawable/andy_samberg"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp" />
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Andy Samberg"
-                            android:layout_gravity="center" />
+                    android:orientation="horizontal"
+                    android:id="@+id/episodeCast">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:paddingLeft="10dp">
-                        <ImageView
-                            android:id="@+id/andy2"
-                            android:src="@drawable/andy_samberg"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp" />
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Andy Samberg"
-                            android:layout_gravity="center" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:paddingLeft="10dp">
-                        <ImageView
-                            android:id="@+id/andy3"
-                            android:src="@drawable/andy_samberg"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp" />
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Andy Samberg"
-                            android:layout_gravity="center" />
-
-                    </LinearLayout>
                 </LinearLayout>
 
 
@@ -174,7 +131,8 @@
         <TableLayout
             android:paddingTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/episodeCommentTable">
             <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
@@ -182,68 +140,7 @@
                     android:textSize="18sp"
                     android:text="Comments"/>
             </TableRow>
-            <TableRow
-                android:padding="5dp"
-                android:id="@+id/comment1"
-                android:background="@color/button_material_light"
-                android:layout_weight="1">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/profile_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/profileperson">
-                </de.hdodenhof.circleimageview.CircleImageView>
 
-                <TableLayout
-                    android:layout_weight="0.33">
-                    <TextView android:id="@+id/username"
-                        android:text="JPriya"
-                        android:layout_gravity="center"
-                        android:textSize="20sp"
-                        android:textColor="@android:color/primary_text_light"
-                        />
-                    <TextView android:id="@+id/date"
-                        android:text="October 21, 2014"
-                        android:textColor="#303030" />
-                </TableLayout>
-
-                <TableLayout
-                    android:layout_weight="0.1">
-                    <TableRow>
-                        <ImageButton
-                            android:src="@drawable/small_like"
-                            android:layout_width="30dp"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/likebutton"
-                            android:adjustViewBounds="true" />
-                        <TextView
-                            android:text="12 likes"
-                            android:layout_gravity="center"/>
-                    </TableRow>
-                    <TableRow>
-                        <ImageButton
-                            android:src="@drawable/smallcomment"
-                            android:layout_width="30dp"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/commentbutton"
-                            android:adjustViewBounds="true" />
-                        <TextView
-                            android:text="3 replies"
-                            android:layout_gravity="center"/>
-                    </TableRow>
-
-                </TableLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </TableRow>
         </TableLayout>
 
 

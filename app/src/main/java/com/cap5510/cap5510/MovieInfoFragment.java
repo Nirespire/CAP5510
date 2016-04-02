@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cap5510.cap5510.api.GetCommentsMovie;
 import com.cap5510.cap5510.api.GetMovieInfo;
 import com.cap5510.cap5510.api.GetPeopleMovie;
 import com.cap5510.cap5510.api.objects.AsyncTaskInput;
@@ -27,6 +28,7 @@ public class MovieInfoFragment extends Fragment {
 
             new GetMovieInfo().execute(new AsyncTaskInput(this.getActivity(), new Movie(traktID)));
             new GetPeopleMovie().execute(new AsyncTaskInput(this.getActivity(), new Movie(traktID)));
+            new GetCommentsMovie().execute(new AsyncTaskInput(this.getActivity(), new Movie(traktID)));
 
         return root;
     }

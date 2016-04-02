@@ -12,6 +12,8 @@ public class Episode extends StandardMediaObject {
     private EpisodeIDs ids;
     private int id;
 
+    private  String posterURL1;
+
     private String posterURL;
 
     public int getSeason() {
@@ -53,9 +55,27 @@ public class Episode extends StandardMediaObject {
     public String getPosterURL(){
         return posterURL;
     }
+    public String getPosterURL1(){
+        return posterURL1;
+    }
+
+    public void setPosterURL(String url){this.posterURL = url;}
+
     public Episode (int id, String url) {
         this.id = id;
         this.posterURL = url;
+    }
+    public Episode (int id, String url, String url1) {
+        this.id = id;
+        this.posterURL = url;
+        this.posterURL1 = url1;
+    }
+    public Episode (int id) {
+        this.id = id;
+    }
+
+    public Episode() {
+
     }
 
 
