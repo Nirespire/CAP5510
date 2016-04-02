@@ -172,13 +172,27 @@ public class SearchTask extends AsyncTask<AsyncTaskInput, Integer, Response> {
     private void createSearchResultMovieItem(JSONObject item, TableLayout resultsTable){
         ImageView iv = new ImageView(a);
 
-        String imageURL = "https://placeholdit.imgix.net/~text?txtsize=33&txt=poster&w=300&h=450";
+        String imageURL = null;
+
         try {
-            imageURL = item.getJSONObject("images").getJSONObject("poster").getString("thumb");
+            if(item.has("images")){
+                if(item.getJSONObject("images").has("poster")){
+                    if(item.getJSONObject("images").getJSONObject("poster").has("thumb")){
+                        if(!item.getJSONObject("images").getJSONObject("poster").isNull("thumb")){
+                            imageURL = item.getJSONObject("images").getJSONObject("poster").getString("thumb");
+                            new DownloadImageTask(iv).execute(imageURL);
+                        }
+                    }
+                }
+            }
         }
         catch(JSONException e){
             Log.e("sanjay", "failed to get poster");
             Log.e("sanjay", e.getMessage());
+        }
+
+        if(imageURL == null){
+            iv.setImageDrawable(c.getDrawable(R.drawable.placeholder));
         }
 
         int traktID = -1;
@@ -190,7 +204,7 @@ public class SearchTask extends AsyncTask<AsyncTaskInput, Integer, Response> {
             Log.e("sanjay", e.getMessage());
         }
 
-        new DownloadImageTask(iv).execute(imageURL);
+
 
         LinearLayout ll = new LinearLayout(a);
         ll.setOrientation(LinearLayout.VERTICAL);
