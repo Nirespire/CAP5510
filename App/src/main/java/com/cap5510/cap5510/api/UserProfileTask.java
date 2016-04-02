@@ -23,9 +23,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by Vega on 3/28/2016.
+ * Created by Vega on 4/1/2016.
  */
-public class MyProfileTask extends AsyncTask<Activity, Integer, Response> {
+public class UserProfileTask extends AsyncTask<Activity, Integer, Response> {
 
     Activity a = null;
     Fragment f=null;
@@ -57,7 +57,7 @@ public class MyProfileTask extends AsyncTask<Activity, Integer, Response> {
                     .build();
 
             response = client.newCall(request).execute();
-            //Log.e("aishat", response.body().string());
+
         } catch (IOException e) {
 
         }
@@ -76,25 +76,22 @@ public class MyProfileTask extends AsyncTask<Activity, Integer, Response> {
         try{
             String response = result.body().string();
 
-            Log.e("aishatx", response);
+            Log.e("aishatf", response);
 
-           // JSONArray json = new JSONArray(response);
+            // JSONArray json = new JSONArray(response);
 
             JSONObject json = new JSONObject(response);
 
-           // JSONObject currentItem = json.getJSONObject(0);
+            // JSONObject currentItem = json.getJSONObject(0);
             Log.e("aishatx", json.getString("username"));
             String current_user = json.getString("username");
             String icon = json.getJSONObject("images").getJSONObject("avatar").getString("full");
 
-            
-            TextView name = (TextView)a.findViewById(R.id.profile_name);
-            CircleImageView picture = (CircleImageView)a.findViewById(R.id.profile_image);
-
-            new DownloadImageTask(picture).execute(icon);
-            name.setText(current_user);
-
-            new GetFriendWatchedHistoryTask(current_user).execute(a);
+            SharedPreferences sharedPref = c.getSharedPreferences("api", c.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("profile_name", current_user);
+            editor.putString("profile_pix", icon);
+            editor.commit();
 
 
 
@@ -105,5 +102,8 @@ public class MyProfileTask extends AsyncTask<Activity, Integer, Response> {
         }catch(JSONException j){
             Log.e("aishatx","json exception caught");
         }
+
     }
 }
+
+

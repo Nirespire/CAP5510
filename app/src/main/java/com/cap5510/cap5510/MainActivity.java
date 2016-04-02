@@ -27,6 +27,7 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.cap5510.cap5510.api.GetWatchedTvShows;
+import com.cap5510.cap5510.api.UserProfileTask;
 import com.cap5510.cap5510.api.objects.TimeConversion;
 
 import java.sql.Time;
@@ -59,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
+
         if (getSupportFragmentManager().findFragmentById(R.id.frame_container) == null) {
 
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -69,14 +73,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             //Fragment f;
             FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
 
-            if(setting.equals("1")) {
+            if(setting.equals("1") || setting.equals("-1")) {
                 MainFragment f = new MainFragment();
                 MainActivity.this.setTitle("Home");
                 tx.add(R.id.frame_container, f, "MainFragment")
                         .addToBackStack(null)
                         .commit();
             }
-            else if(setting.equals("2")){
+             if(setting.equals("2")){
                 MainCalendarFragment g = new MainCalendarFragment();
                 MainActivity.this.setTitle("Home");
                 tx.add(R.id.frame_container, g, "CalendarFragment")
@@ -84,9 +88,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         .commit();
             }
 
+
+
         }
 
-      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        SharedPreferences sharedPref = getSharedPreferences("api", Context.MODE_PRIVATE);
+        NAME = sharedPref.getString("profile_name","");
+        Log.e("aishatf",NAME);
+        //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 //        toolbar.setNavigationOnClickListener(this);
 
@@ -421,6 +430,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             }
         }
     }
+
 
 
 }

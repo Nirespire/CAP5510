@@ -148,6 +148,8 @@ public class PollForAuth extends AsyncTask<Activity, Integer, Response> {
             Button openTraktButton = (Button) a.findViewById(R.id.open_trakt_button);
             openTraktButton.setVisibility(View.GONE);
 
+            new UserProfileTask().execute(a);
+
             //use this to get the profile information and username
             //new GetProfileTask.execute(a);
             return;

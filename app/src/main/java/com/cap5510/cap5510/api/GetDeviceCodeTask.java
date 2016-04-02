@@ -57,6 +57,7 @@ public class GetDeviceCodeTask extends AsyncTask<Activity, Integer, Response> {
                 public void run() {
                     codeView.setText("You are Authorized!");
                     genButton.setEnabled(false);
+
                 }
             });
             return null;
