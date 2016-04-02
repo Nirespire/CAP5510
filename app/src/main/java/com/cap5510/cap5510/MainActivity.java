@@ -81,18 +81,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         .addToBackStack(null)
                         .commit();
             }
-             if(setting.equals("2")){
+            else if(setting.equals("2")){
                 MainCalendarFragment g = new MainCalendarFragment();
                 MainActivity.this.setTitle("Home");
                 tx.add(R.id.frame_container, g, "CalendarFragment")
                         .addToBackStack(null)
                         .commit();
             }
-           MainFragment mainFrag = new MainFragment();
-            MainActivity.this.setTitle("Queue");
-            tx.add(R.id.frame_container, mainFrag, "MainFragment")
-                    .addToBackStack(null)
-                    .commit();
+            else {
+                MainFragment mainFrag = new MainFragment();
+                MainActivity.this.setTitle("Queue");
+                tx.add(R.id.frame_container, mainFrag, "MainFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
 
 
 
