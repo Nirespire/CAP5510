@@ -22,6 +22,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.content_main, null);
 
+        getActivity().setTitle("Queue");
         TabHost tabHost = (TabHost)root.findViewById(R.id.tabHost);
 
         tabHost.setup();

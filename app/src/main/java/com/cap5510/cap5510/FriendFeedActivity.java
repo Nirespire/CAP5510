@@ -43,7 +43,10 @@ public class FriendFeedActivity extends AppCompatActivity{
         Bitmap bmp = BitmapFactory.decodeByteArray(b, 0, b.length);*/
         String image_url = extras.getString("picture");
         String username = extras.getString("username");
+
+        picture.setBackgroundResource(R.drawable.loading);
         new DownloadImageTask(picture).execute(image_url);
+
         name.setText(username);
 
        // new FriendProfileTask(username).execute(this);

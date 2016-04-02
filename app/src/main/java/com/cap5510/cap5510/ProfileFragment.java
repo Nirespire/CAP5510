@@ -27,6 +27,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.content_profile, null);
 
+        getActivity().setTitle("Profile");
        // new MyProfileTask().execute(this.getActivity());
         SharedPreferences sharedPref = getActivity().getSharedPreferences("api", Context.MODE_PRIVATE);
         String current_user = sharedPref.getString("profile_name","");
@@ -37,6 +38,8 @@ public class ProfileFragment extends Fragment {
         CircleImageView picture = (CircleImageView)root.findViewById(R.id.profile_image);
 
         name.setText(current_user);
+
+        picture.setBackgroundResource(R.drawable.loading);
         new DownloadImageTask(picture).execute(icon);
 
         new GetFriendWatchedHistoryTask(current_user).execute(this.getActivity());

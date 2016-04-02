@@ -15,6 +15,7 @@ public class ShowInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.content_show_info, null);
+        getActivity().setTitle("Show Information");
 
         Spinner dropdown = (Spinner)root.findViewById(R.id.spinner1);
         String[] items = new String[]{"Season One", "Season Two", "Season Three"};

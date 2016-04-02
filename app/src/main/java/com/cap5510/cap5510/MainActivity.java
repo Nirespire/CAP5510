@@ -36,7 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
-    String TITLES[] = {"Queue","Calendar","Profile","Recommendation","Watchlist","EpisodeInfo","MovieInfo","FriendFeed","Showinfo", "APITest"};
+    String TITLES[] = {"Queue","Calendar","Profile","Recommendation","Watchlist","FriendFeed"};
     String NAME = "";
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
     RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             //Fragment f;
             FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
 
-            if(setting.equals("1")) {
+            if(setting.equals("1")||setting.equals("-1")) {
                 MainFragment f = new MainFragment();
                 MainActivity.this.setTitle("Home");
                 tx.add(R.id.frame_container, f, "MainFragment")
@@ -95,6 +95,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         .addToBackStack(null)
                         .commit();
             }
+
+          /* MainFragment mainFrag = new MainFragment();
+            MainActivity.this.setTitle("Queue");
+            tx.add(R.id.frame_container, mainFrag, "MainFragment")
+                    .addToBackStack(null)
+                    .commit();*/
+
 
 
 
@@ -160,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         case 1:
                             //intent = new Intent(c,CalendarActivity.class);
                             MainFragment mainFrag = new MainFragment();
-                            MainActivity.this.setTitle("Home");
+                            //MainActivity.this.setTitle("Home");
                             tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
                                     .replace(R.id.frame_container, mainFrag, "MainFragment")
                                     .addToBackStack(null)
@@ -168,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                             break;
                         case 2:
                             //intent = new Intent(c,CalendarActivity.class);
-                            MainActivity.this.setTitle("Calendar");
+                           // MainActivity.this.setTitle("Calendar");
                             MainCalendarFragment calendarFrag = new MainCalendarFragment();
                             tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
                             .replace(R.id.frame_container, calendarFrag, "CalendarFragment")
@@ -177,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                             break;
                         case 3:
                             //intent = new Intent(c,ProfileActivity.class);
-                            MainActivity.this.setTitle("Profile");
+                            //MainActivity.this.setTitle("Profile");
                             ProfileFragment profileFrag = new ProfileFragment();
                             tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
                             .replace(R.id.frame_container, profileFrag, "ProfileFragment")
@@ -186,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                             break;
                         case 4:
                             //intent = new Intent(c,RecommendationActivity.class);
-                            MainActivity.this.setTitle("Recommendation");
+                           // MainActivity.this.setTitle("Recommendation");
                             RecommendationFragment recommendFrag = new RecommendationFragment();
                             tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
                                     .replace(R.id.frame_container, recommendFrag, "RecommendationFragment")
@@ -195,14 +202,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                             break;
                         case 5:
                             //intent = new Intent(c,WatchlistActivity.class);
-                            MainActivity.this.setTitle("Watchlist");
+                            //MainActivity.this.setTitle("Watchlist");
                             WatchlistFragment watchlistFrag = new WatchlistFragment();
                             tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
                                     .replace(R.id.frame_container, watchlistFrag, "WatchlistFragment")
                                     .addToBackStack(null)
                                     .commit();
                             break;
-                        case 6:
+                        /*case 6:
                             //intent = new Intent(c,EpisodeInfoActivity.class);
                             MainActivity.this.setTitle("Episode Information");
                             EpisodeInfoFragment episodeinfoFrag = new EpisodeInfoFragment();
@@ -214,16 +221,16 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         case 7:
                            // intent = new Intent(c,MovieInfoActivity.class);
                             //startActivity(intent);
-                            MainActivity.this.setTitle("Movie Information");
+                            //MainActivity.this.setTitle("Movie Information");
                             MovieInfoFragment movieinfoFrag = new MovieInfoFragment();
                             tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
                                     .replace(R.id.frame_container, movieinfoFrag, "MovieInfoFragment")
                                     .addToBackStack(null)
                                     .commit();
-                            break;
-                        case 8:
+                            break;*/
+                        case 6:
                             //intent = new Intent(c,FriendFeedActivity.class);
-                            MainActivity.this.setTitle("Friends");
+                          //  MainActivity.this.setTitle("Friends");
                             FriendFeedFragment friendfeedFrag = new FriendFeedFragment();
 
                             //tx.replace(R.id.frame_container, Fragment.instantiate(MainActivity.this, "com.cap5510.cap5510.FriendFeedFragment"))
@@ -232,10 +239,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                             .addToBackStack(null)
                             .commit();
                             break;
-                        case 9:
+                       /* case 9:
                             //intent = new Intent(c,ShowInfoActivity.class);
                            // startActivity(intent);
-                            MainActivity.this.setTitle("Show Information");
+                            //MainActivity.this.setTitle("Show Information");
                             ShowInfoFragment showinfoFrag = new ShowInfoFragment();
                             tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
                                     .replace(R.id.frame_container, showinfoFrag, "ShowInfoFragment")
@@ -245,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         case 10:
                             intent = new Intent(c, APITestActivity.class);
                             startActivity(intent);
-                            break;
+                            break;*/
                         default:
                             Toast.makeText(MainActivity.this, "The Item Clicked is: " + recyclerView.indexOfChild(child), Toast.LENGTH_SHORT).show();
 
@@ -370,6 +377,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             startActivity(intent);
             return true;
         }
+        if (id ==android.R.id.home) {
+            if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+
+                getSupportFragmentManager().popBackStack();
+            }
+                return true;
+        }
 //        if (id == android.R.id.home) {
 //            onBackPressed();
 //            return true;
@@ -420,22 +434,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // Check which request we're responding to
         if (requestCode == 1) {
             // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                int traktID = data.getIntExtra("traktID", -1);
-                Log.d("clicked trakt id", String.valueOf(traktID));
-
-                Bundle idInfo = new Bundle();
-                idInfo.putInt("traktID", traktID);
-
-                MainActivity.this.setTitle("Movie Information");
-                MovieInfoFragment movieInfoFrag = new MovieInfoFragment();
-                movieInfoFrag.setArguments(idInfo);
-                tx.remove(getSupportFragmentManager().findFragmentById(R.id.frame_container))
-                    .replace(R.id.frame_container, movieInfoFrag, "MovieInfoFragment")
-                    .addToBackStack(null)
-                    .commitAllowingStateLoss();
-
-            }
         }
     }
 

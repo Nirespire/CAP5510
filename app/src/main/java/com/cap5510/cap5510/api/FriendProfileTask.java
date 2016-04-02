@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.cap5510.cap5510.Friend;
@@ -89,20 +91,33 @@ public class FriendProfileTask extends AsyncTask<Activity, Integer, Response> {
 
 
             for(int i=0;i<5;i++){
-                JSONObject currentItem = json.getJSONObject(i);
-                String type = currentItem.getString("type");
-                String logo="";
-                switch(type){
-                    case "show":
-                       logo= currentItem.getJSONObject("show").getJSONObject("images").getJSONObject("poster").getString("thumb");
-                        break;
-                    case "movie":
-                        logo= currentItem.getJSONObject("movie").getJSONObject("images").getJSONObject("poster").getString("thumb");
-                        break;
-                }
-                Log.e("aishatx",logo);
-                new DownloadImageTask(img[i]).execute(logo);
 
+                JSONObject currentItem = json.getJSONObject(i);
+                Log.e("aishatg",currentItem.toString());
+
+                if(currentItem !=null) {
+                    String type = currentItem.getString("type");
+                    String logo = "";
+                    switch (type) {
+                        case "show":
+                        case "episode":
+                            logo = currentItem.getJSONObject("show").getJSONObject("images").getJSONObject("poster").getString("thumb");
+                            break;
+
+                        case "movie":
+                            logo = currentItem.getJSONObject("movie").getJSONObject("images").getJSONObject("poster").getString("thumb");
+                            break;
+                    }
+                    Log.e("aishatx", logo);
+                    img[i].setBackgroundResource(R.drawable.loading);
+                    new DownloadImageTask(img[i]).execute(logo);
+                }else{
+                    if(i==0) {
+                        LinearLayout layout = (LinearLayout)a.findViewById(R.id.nowatchlists);
+                        layout.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                }
             }
 
      }catch(IOException e){

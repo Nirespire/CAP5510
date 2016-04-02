@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -108,6 +110,7 @@ public class GetFriendWatchedHistoryTask extends AsyncTask<Activity, Integer, Re
                     case "show":
                         logo= currentItem.getJSONObject("show").getJSONObject("images").getJSONObject("poster").getString("thumb");
                         if(sh<5) {
+                            simg[sh].setBackgroundResource(R.drawable.loading);
                             new DownloadImageTask(simg[sh]).execute(logo);
                             sh++;
                         }
@@ -116,6 +119,7 @@ public class GetFriendWatchedHistoryTask extends AsyncTask<Activity, Integer, Re
                         logo= currentItem.getJSONObject("show").getJSONObject("images").getJSONObject("poster").getString("thumb");
                         Log.e("aishatx",logo);
                         if(sh<5) {
+                            simg[sh].setBackgroundResource(R.drawable.loading);
                             new DownloadImageTask(simg[sh]).execute(logo);
                             String episode = "S"+currentItem.getJSONObject("episode").getString("season")+"E"+
                                     currentItem.getJSONObject("episode").getString("number");
@@ -126,6 +130,7 @@ public class GetFriendWatchedHistoryTask extends AsyncTask<Activity, Integer, Re
                     case "movie":
                         logo= currentItem.getJSONObject("movie").getJSONObject("images").getJSONObject("poster").getString("thumb");
                         if(mo<5) {
+                            mimg[mo].setBackgroundResource(R.drawable.loading);
                             new DownloadImageTask(mimg[mo]).execute(logo);
                             mo++;
                         }
@@ -134,6 +139,14 @@ public class GetFriendWatchedHistoryTask extends AsyncTask<Activity, Integer, Re
                 i++;
                 Log.e("aishatx",logo);
 
+            }
+            if(mo==0){
+                LinearLayout layout = (LinearLayout)a.findViewById(R.id.nomovies);
+                layout.setVisibility(View.VISIBLE);
+            }
+            if(sh==0){
+                LinearLayout layout = (LinearLayout)a.findViewById(R.id.noshows);
+                layout.setVisibility(View.VISIBLE);
             }
 
         }catch(IOException e){

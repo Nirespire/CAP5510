@@ -110,7 +110,9 @@ public class CalendarFragment extends Fragment {
             default:
                 break;
         }
-        Log.e("aishatw",""+offset);
+        Log.e("aishatw", "" + offset);
         return offset;
     }
+
+
 }
