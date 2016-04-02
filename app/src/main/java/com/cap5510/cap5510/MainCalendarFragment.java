@@ -27,6 +27,9 @@ public class MainCalendarFragment extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.content_calendar_new, container, false);
         ViewPager viewPager = (ViewPager)root.findViewById(R.id.viewpager);
 
+        Log.e("aishath","i am called");
+        getActivity().setTitle("Calendar");
+
         tabLayout = (TabLayout)root.findViewById(R.id.sliding_tabs);
 
          String tabDate[] = getDays();

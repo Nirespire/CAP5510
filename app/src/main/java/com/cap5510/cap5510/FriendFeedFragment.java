@@ -19,6 +19,7 @@ public class FriendFeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.content_friend_feed, null);
+        getActivity().setTitle("Friends");
         mListView = (ListView)root.findViewById(R.id.feedview);
         generateCode();
 

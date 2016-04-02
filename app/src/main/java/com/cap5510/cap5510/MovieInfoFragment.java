@@ -21,6 +21,7 @@ public class MovieInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.content_movie_info, null);
+        getActivity().setTitle("Movie Information");
 
             int traktID = this.getArguments().getInt("traktID");
             Log.d("id?", Integer.toString(traktID));
