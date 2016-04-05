@@ -107,7 +107,7 @@ public class GetWatchedTvShows extends AsyncTask<AsyncTaskInput, Integer, Respon
                     item.setTraktID(show.getJSONObject("ids").getInt("trakt"));
                     item.setYear(show.getInt("year"));
 
-                    item.setPosterURL(show.getJSONObject("images").getJSONObject("poster").getString("full"));
+                    item.setPosterURL(show.getJSONObject("images").getJSONObject("banner").getString("full"));
 
 
                     // This could be set to null
