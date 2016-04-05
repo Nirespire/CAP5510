@@ -91,7 +91,7 @@ public class GetTvProgress extends AsyncTask<AsyncTaskInput, Integer, Response> 
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             episodeLayout.setLayoutParams(lp);
             episodeLayout.setOrientation(LinearLayout.VERTICAL);
-            episodeLayout.setPadding(10, 0, 0, 0);
+            episodeLayout.setPadding(0,0,0,30);
 
             ImageView showPoster = new ImageView(c);
             new DownloadImageTask(showPoster).execute(e.getPosterURL());
