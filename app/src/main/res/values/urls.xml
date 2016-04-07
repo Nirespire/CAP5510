@@ -15,7 +15,7 @@
     <string name="url_enter_auth_code">https://trakt.tv/activate</string>
 
     <string name="url_get_trending_movies">https://api-v2launch.trakt.tv/movies/trending?extended=images</string>
-    <string name="url_get_watched_tv_shows">https://api-v2launch.trakt.tv/sync/history/episodes?extended=images</string>
+    <string name="url_get_watched_tv_shows">https://api-v2launch.trakt.tv/sync/history/episodes?extended=images&amp;limit=100</string>
     <string name="url_shows_partial">https://api-v2launch.trakt.tv/shows/</string>
     <string name="url_show_progress_partial">/progress/watched?hidden=false&amp;specials=false</string>
 

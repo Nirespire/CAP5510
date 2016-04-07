@@ -8,7 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -91,9 +93,9 @@ public class GetTvProgress extends AsyncTask<AsyncTaskInput, Integer, Response> 
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             episodeLayout.setLayoutParams(lp);
             episodeLayout.setOrientation(LinearLayout.VERTICAL);
-            episodeLayout.setPadding(0,0,0,30);
+            episodeLayout.setPadding(0, 0, 0, 30);
 
-            ImageView showPoster = new ImageView(c);
+            final ImageView showPoster = new ImageView(c);
             new DownloadImageTask(showPoster).execute(e.getPosterURL());
             int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 330, c.getResources().getDisplayMetrics());
             int width = (int)  TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 250, c.getResources().getDisplayMetrics());
@@ -116,14 +118,58 @@ public class GetTvProgress extends AsyncTask<AsyncTaskInput, Integer, Response> 
             nextEpisode.setSeason(nextEp.getInt("season"));
             nextEpisode.setNumber(nextEp.getInt("number"));
 
-            showPoster.setOnClickListener(new View.OnClickListener() {
+            final GestureDetector gestureDetector = new GestureDetector(a, new GestureDetector.SimpleOnGestureListener(){
+
+                boolean tapped;
 
                 @Override
-                public void onClick(View v) {
+                public boolean onDown(MotionEvent e) {
+                    return true;
+                }
+
+                @Override
+                public boolean onSingleTapConfirmed(MotionEvent e){
+                    Log.e("sanjay", "single");
 
                     m.openEpisode(nextEpisode);
+
+                    return true;
+                }
+
+                // event when double tap occurs
+                @Override
+                public boolean onDoubleTapEvent(MotionEvent e) {
+
+                    tapped = !tapped;
+
+                    if(tapped) {
+                        Log.e("sanjay", "double");
+                        showPoster.setImageResource(R.drawable.watched_poster);
+                    }
+
+                    return true;
                 }
             });
+
+            showPoster.setOnTouchListener(new View.OnTouchListener() {
+
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return gestureDetector.onTouchEvent(event);
+                }
+
+            });
+
+
+
+//            showPoster.setOnClickListener(new View.OnClickListener() {
+//
+//                @Override
+//                public void onClick(View v) {
+//
+//                    m.openEpisode(nextEpisode);
+//                }
+//            });
 
 
 
